@@ -1,0 +1,21 @@
+* {
+	font-family:"League Gothic";
+	text-align:center;
+	background-image: url("../../custom_img/bg.png");
+	text-decoration: none;
+}
+.body {
+	word-wrap:break-word;
+	overflow:hidden;
+}
+
+.header {
+	font-size:24px;
+	text-align:center;
+
+}
+
+.pitch {
+	font-family: "Helvetica", sans-serif;
+	color:gray;
+}

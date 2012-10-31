@@ -1,0 +1,22 @@
+* {
+	font-family:"League Gothic";
+	text-align:center;
+	background-image: url("../../custom_img/bg.png");
+	text-decoration: none;
+}
+
+.header {
+	font-size:24px;
+	text-align:center;
+
+}
+
+.detail {
+	font-family: "Helvetica Neue Light", sans-serif;
+	word-wrap:break-word;
+	overflow:hidden;
+}
+.links a {
+	background-image: url("../../custom_img/transpBlack.png");
+	color: white;
+}

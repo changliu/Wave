@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Wave list</title>
+
+<link href="../jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="../css/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+<script src="../jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="../jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script src="js/jquery.accordion.js" type="text/javascript"></script>
+<script src="js/jquery.accordion.source.js" type="text/javascript"></script>
+
+
+</head> 
+
+
+
+<!--
+TODO:
+
+To put navigation bar in the bottom
+put friends who recommend it on the list
+Put icons with list view
+Show map with annotations regarding to places in the list
+  -->
+<body>
+<div data-role="page">
+  <div id ="loc_wave_list_header" style="color:grey">
+    <h1>SEE HIS/HER RECENT WAVES...</h1>
+  </div>
+
+    <div class="links" >
+    <a href="../index.html">HOME</a>
+    <a href="index.html">BACK</a>
+  </div>
+    
+   <div> 
+
+    <ul class="accordion" style:"margin-top:30px" data-role="content" >
+    <li>
+        <a>STARTUP WEEKEND</a>
+        <div style="font-family:sans-serif">Definitely a good experience, our wave idea was such a successful pitch!
+        </div>
+    </li>
+
+    <li>
+        <a>FARMERS MARKET ON CAL AVE</a>
+        <div style="font-family:sans-serif">Vote for the roma crepes!
+        </div>
+    </li>
+
+</ul>
+
+
+
+ 
+</div>
+</div> 
+
+
+<script type="text/javascript">
+			
+		$(document).ready(function () {
+			$('ul.accordion').accordion();
+
+			
+		});
+				
+	</script>
+
+
+</body>
+</html>

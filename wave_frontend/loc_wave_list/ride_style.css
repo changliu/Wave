@@ -1,0 +1,29 @@
+* {
+	font-family:"League Gothic";
+	text-align:center;
+	background-image: url("../../custom_img/bg.png");
+	text-decoration: none;
+}
+.body {
+	word-wrap:break-word;
+	overflow:hidden;
+}
+
+.header {
+	font-size:30px;
+	text-align:center;
+	color:gray;
+	opacity: 0.7;
+
+}
+
+.pitch {
+	font-family: "Helvetica", sans-serif;
+	color:gray;
+}
+.links {
+
+	background-image:url("http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png");
+	font-family: "Helvetica", sans-serif;
+	float: left;
+}
