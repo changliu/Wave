@@ -1,5 +1,20 @@
 Wave::Application.routes.draw do
-  get "home/index"
+  root :to => 'home#index'
+
+  match '/soc_wave_list' => 'soc_wave_list#index'
+  match '/soc_wave_list/wave_detail' => 'soc_wave_list#wave_detail'
+  match '/soc_wave_list/wave_final' => 'soc_wave_list#wave_final'
+
+  match '/loc_wave_list' => 'loc_wave_list#index'
+  match '/loc_wave_list/wave_detail' => 'loc_wave_list#wave_detail'
+  match '/loc_wave_list/wave_final' => 'loc_wave_list#wave_final'
+
+  match '/soc_mood_picker' => 'soc_mood_picker#index'
+
+  match '/friend_circle' => 'friend_circle#index'
+  match '/friend_circle/circles' => 'friend_circle#circles'
+  match '/friend_circle/waves' => 'friend_circle#waves'
+  match '/friend_circle/delete' => 'friend_circle#delete'  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

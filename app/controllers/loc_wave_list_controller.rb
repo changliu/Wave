@@ -1,0 +1,2 @@
+class LocWaveListController < ApplicationController
+end

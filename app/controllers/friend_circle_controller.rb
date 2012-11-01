@@ -1,0 +1,2 @@
+class FriendCircleController < ApplicationController
+end

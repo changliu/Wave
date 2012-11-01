@@ -1,0 +1,59 @@
+<!--
+TODO:
+
+To put navigation bar in the bottom
+put friends who recommend it on the list
+Put icons with list view
+Show map with annotations regarding to places in the list
+  -->
+<div data-role="page">
+  <div id ="loc_wave_list_header" >
+    <h1>FRIENDLY WAVES</h1>
+  </div>
+
+  <div data-role="content" class="links">
+    <a href="/">HOME</a>
+    <a href="/">BACK</a>
+    
+   <div>	  
+    <script type="text/javascript">
+    $(".links").css("font-family", "Helvetica Neue");
+    </script>
+
+    <ul class="accordion">
+ 
+    <li>
+        <a>CANTOR ART CENTER, Jay, Sheta recommend it</a>
+        <div>Information about ART CENTER, INCLUDING FRIEND'S REVIEW
+        <a href="soc_wave_list/wave_final"> RIDE THE WAVE </a>
+        <a href="loc_wave_list/wave_detail"> SHOW ME MORE </a>
+
+        </div>
+    </li>
+    
+     <li>
+        <a>STANFORD MEMORIAL CHURCH</a>
+        <div>Information about stanford memorial church, INCLUDING FRIEND'S REVIEW
+        <a href="soc_wave_list/wave_final"> RIDE THE WAVE </a>
+        <a href="soc_wave_list/wave_detail"> SHOW ME MORE </a>
+        </div>
+    </li>
+    
+     
+    
+</ul>
+
+
+</div>
+</div> 
+
+
+<script type="text/javascript">
+			
+		$(document).ready(function () {
+			$('ul.accordion').accordion();
+
+			
+		});
+				
+	</script>

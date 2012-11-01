@@ -1,0 +1,2 @@
+module FriendCircleHelper
+end

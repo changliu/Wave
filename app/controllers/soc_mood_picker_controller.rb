@@ -1,0 +1,2 @@
+class SocMoodPickerController < ApplicationController
+end

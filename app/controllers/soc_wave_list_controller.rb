@@ -1,0 +1,2 @@
+class SocWaveListController < ApplicationController
+end
