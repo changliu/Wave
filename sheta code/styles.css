@@ -9,6 +9,7 @@
   top:0;
   width:100%;
   z-index:0;
+  height: 460px;
 }
 
 .bgi {
@@ -266,13 +267,65 @@ height: 319px;
   color: #22316C;
   opacity: 0.6;
   font-size: 12pt;
-  margin-left: 0px;
+  margin-right: 8px;
+  margin-left: 2px;
 }
 
 
-#links{
-	margin-left: 120px;	
+ #links{
+  margin-left: 100px; 
 
 }
 
+/* MORE INFO STYLE  */
+ 
+#details{
+  color:black;
+  z-index: 700;
+}
 
+#moreinf{
+  background-color:rgba(0, 0, 0, 0.56);
+  height: 200px;
+  width: 320px;
+  position:relative;
+  margin-top: 100px;
+  z-index: 700;
+}
+
+#text{
+  color:white;
+  font-family: helvetica;
+  font-size: 9pt;
+  padding: 13px;
+}
+
+h2{
+  color:white;
+  opacity: 0.8;
+  font-size: 30pt;
+  font-family: 'League Gothic';
+  z-index: 700; 
+  text-align: center;
+  padding-top: 15px;
+}
+
+#getout{
+  text-align:center;
+  position:relative;
+  margin-top: 33px;
+  color:white;
+  opacity: 0.9;
+  z-index: 900;
+}
+
+.na{
+   font-family: 'League Gothic';
+   text-decoration: none;
+  color: white;
+  opacity: 0.8;
+  position: relative;
+    z-index: 900;
+  font-size: 16pt;
+  margin-left: 20px;
+}
