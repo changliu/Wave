@@ -1,12 +1,9 @@
-<div  data-role="page" >
+<div data-role="page" >
   <div id ="header" >
     <h1>NEARBY WAVES</h1>
   </div>
 
   <div data-role="content" >
-
-
-
     <div id="top_nav">
     <a href="/">HOME</a>
     <a href="/">BACK</a>
@@ -58,7 +55,37 @@
 			
 		$(document).ready(function () {
 			$('ul.accordion').accordion();
-			
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+          error('not supported');
+        }
+
+        function success(position) {
+          console.log("The user's position is at");
+          debug = position;
+          console.log(debug);
+
+          var query = "https://api.foursquare.com/v2/venues/search";   
+          params = new Object();
+          params.ll = "37.4280827,122.1739237";
+          params.limit = 10;
+          $.ajax({
+            url: query,
+            dataType: 'json',
+            data: params,
+            success: query_success
+          });
+        }
+
+        function query_success(data){
+          console.log(data);
+        }
+
+        function error(msg){
+          console.log("could not get location of user");
+        }
 		});
 				
 	</script>
