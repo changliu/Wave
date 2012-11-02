@@ -1,0 +1,12 @@
+Front end:
+	Development entire app flow structure with semi-proper interaction  -- Chang
+	Graphic design and implementation for local wave list, local wave detail, and loal wave final screen -- Sheta
+	Insure rendering on mobile device -- Sheta
+	Linking all screens together -- Chang
+
+
+Back end:
+	Setting up Ruby on Rails Framework -- Jay
+	Four square api exploration -- Chang
+	API calls, API data parsing -- Jay
+	Back end plug-in into wave list, wave detail screens -- Jay
