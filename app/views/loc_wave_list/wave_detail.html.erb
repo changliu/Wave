@@ -13,11 +13,13 @@
 
 
 
+<div id="bgimg">
+</div>
 <img class="bg" src="/assets/ikes.jpeg"/>
 <div id = "moreinf">
 <h2> WAVE DETAILS </h2>
-<p id = "text"> Here is where even some more details about the place are.
-	JAY FOR FOURSQUARE API: The "categories", "contact", and some basic info should be here.
+<p id="text">
+
 </p>
 
 <div id = "getout">
@@ -34,4 +36,49 @@
           return false
       }
   }
+
+  var vars = [], hash;
+  var q = document.URL.split('?')[1];
+  if(q != undefined){
+    q = q.split('&');
+    for(var i = 0; i < q.length; i++){
+      hash = q[i].split('=');
+      vars.push(hash[1]);
+      vars[hash[0]] = hash[1];
+    }
+	}
+
+	var id = vars['id'];
+	var contact = vars['contact'];
+	var category = vars['category'];
+	var icon = vars['icon'];
+	var name = vars['name'];
+
+	if(jQuery.type(contact) === "undefined"){
+		$("#text").html(unescape(name) + "<br/>" + unescape(category));
+	} else{
+		$("#text").html(unescape(name) + "<br/>" + unescape(category) + "<br/>" + unescape(contact));
+	}
+/*
+	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   
+  params = new Object();
+  params.group = "venue";
+  params.limit = 1;
+  params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+  $.ajax({
+    url: query,
+    dataType: 'json',
+    data: params,
+    success: fs_query_success
+  });
+
+  function fs_query_success(data){
+  	var photo = data.response.photos;
+  	console.log(photo);
+  	var url = photo.prefix + "530x224" + photo.suffix;
+
+  	var img = "<img src='" + url + "' class='bg'/>";
+  	$("#bgimg").html(img);
+  }
+  */
  </script>

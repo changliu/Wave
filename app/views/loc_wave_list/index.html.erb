@@ -185,12 +185,16 @@ function animate(lastTick, timeLeft, closingId, openingId)
             for(var j=0;j<items.length;j++){
               var venue = items[j];
               var venue_name = venue.name;
+              var venue_id = venue.id;
+              var venue_contact = venue.contact["formattedPhone"];
+              var venue_category = venue.categories[0].name;
+              var venue_category_icon = venue.categories[0].icon;
               var distance = venue.location["distance"];
               console.log(venue_name);
 
               // display venue on page
               var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'>" + venue_name + "</div></div>";
-              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<a class = 'navi' href='loc_wave_list/wave_detail'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final'>RIDE THIS WAVE</a></div>";
+              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<br/><a class = 'navi' href='loc_wave_list/wave_detail?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + "'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
 
               $(".AccordionContainer").append(title);
               $(".AccordionContainer").append(content);
