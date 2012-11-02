@@ -1,29 +1,37 @@
-	<div data-role = "content">
- 		<div id="header">
-			<h2>CANTOR ART CENTER</h2>
-	 	</div>
-
-	 	<iframe width='300' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/manako.map-7ldlad0z.html#17/37.44476078748768/-122.16180306625039'></iframe>
-
-	 	<div >
-		 	<img width='300' height='150' src="http://museum.stanford.edu/images/participate/hostEvent.jpg"></img>
-		    <p class="detail" >
-		      Show map of this place
-		      show yelp or foursqaure reviews of this place
-		      Show more pictures of this place
-		      Add directions option if have time
-
-		    </p>
-		 </div>	
- 
-
-		 <div class="links">
-			<a href="loc_wave_list/wave_final">Ride this wave</a>
-		 </div>
-
-		 <div class="links">
-		 	<a href="/"> home </a>
-		 </div>
 
 
-	</div>
+
+	<!--JAY H. PATEL LOOK OVER HERE AND DO NOT IGNORE THIS!!!!!!!
+	This page is displayed for EACH wave location when the user
+	wants to know more. See that yummy picture of that sandwich? 
+	THAT is where we put the single picture of the venue. Cool sauce?
+	With the text, fill it in with other interesting API info like
+	categories, contact, and some basic info. This should elaborate
+	on the information provided in the accordion menu.
+-->
+
+
+
+
+<img class="bg" src="./ikes.jpeg"/>
+<div id = "moreinf">
+<h2> WAVE DETAILS </h2>
+<p id = "text"> Here is where even some more details about the place are.
+	JAY FOR FOURSQUARE API: The "categories", "contact", and some basic info should be here.
+</p>
+
+<div id = "getout">
+<a  class = "na" href="../loc_wave_list">Back</a>
+<a  class = "na" href="wave_final">Ride this Wave</a>
+</div>
+</div>
+
+<script>
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+ </script>

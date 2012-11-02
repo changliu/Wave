@@ -1,4 +1,4 @@
-	<div>
+<!-- 	<div>
 		<h1>THIS IS WHERE YOU PICK YOUR MOOD SO WE CAN DO OUR JOB BETTER</h1>
         
 	</div>
@@ -16,4 +16,40 @@
     
     
 		
-</div>
+</div> -->
+
+
+<img class="bg" src="nine.jpg">
+	<h1 id = "where"> I'M FEELING . . .</h1>
+	<ul class="linkList">
+  		<li id = "adventurous" class="list">
+  			<a href="#">ADVENTUROUS </a>
+  		</li>
+  		<li id = "romantic" class="list">
+  			<a href="#">ROMANTIC</a>
+  		</li>
+  		<li id = "budget" class="list">
+  			<a href="#">LIKE I'M ON A BUDGET</a>
+  		</li>
+  		<li id = "artsy" class="list">
+  			<a href="#">ARTSY</a>
+  		</li>
+  		<li id = "stylish" class="list"><a href="#">STYLISH</a>
+  		</li>
+  		<li id = "relaxed" class="list"><a href="#">RELAXED</a>
+  		</li>
+  		<li id = "back" class = "list"><a href="..">BACK</a>
+  		</li>
+  		<li id = "next" class = "list"><a href="../soc_wave_list">NEXT</a>
+  		</li>
+	</ul>	
+
+	<script>
+	var a=document.getElementsByTagName("a");
+	for(var i=0;i<a.length;i++){
+    	a[i].onclick=function(){
+        	window.location=this.getAttribute("href");
+        	return false
+    	}
+	}
+	</script>
