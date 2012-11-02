@@ -329,3 +329,76 @@ h2{
   font-size: 16pt;
   margin-left: 20px;
 }
+
+/* DONE PAGE */
+
+
+
+#mapp{
+  margin-top: 40px;
+  z-index: ;
+}
+
+
+#ohyeah{
+  color:black;
+  opacity: 0.9;
+}
+
+.noti{
+  font-family: Helvetica;
+  margin-left: 60px;
+  font-size: 9pt;
+
+}
+
+#or{
+   font-family: 'League Gothic';
+   margin-left: 150px;
+   font-size: 18pt;
+   margin-top: 10px;
+
+}
+
+#notibutton{
+  height: 50px;
+  width: 200px;
+  background-color: #4981CE;
+  text-align: center;
+  font-size: 11pt;
+
+  font-family: helvetica;
+  margin-left: 65px;
+  margin-top: 10px;
+}
+
+#again{
+margin-left: 60px;
+margin-top: 20px;
+}
+
+
+.n{
+   font-family: 'League Gothic';
+   text-decoration: none;
+  color: black;
+  opacity: 0.5;
+  position: relative;
+    z-index: 900;
+  font-size: 16pt;
+  margin-left: 20px;
+}
+
+#notibutton a:visited, #notibutton a:active{
+  color: white;
+  -webkit-link: blue;
+}
+
+#notibutton a{
+  text-decoration: none;
+  color: black;
+}
+
+
+
+

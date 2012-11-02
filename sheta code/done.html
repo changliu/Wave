@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Yay You Rode the Wave!</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link href="styles.css" rel="stylesheet" type="text/css">
+  <style>
+    body{
+    	background-image:url("six.jpeg");
+ 		width:100%;
+  		left:0;
+  		position:absolute;
+  		top:0;
+  		height: 460px;
+    }
+  </style>
+</head>
+<body>
+
+	<h2 id = "ohyeah">YOU'RE RIDING A WAVE   </h2>	
+	<p class = "noti"> see the map below to start heading over</p>
+	<p id = "or"> OR</p>
+	<div id = "notibutton"><a href="#"><p> get notified when you are closer </p></a></div>
+	<div id = "again">
+	<a  class = "n" href="locals.html">Back to Waves</a>
+    <a  class = "n" href="index.html">Go Home</a>
+	</div>
+	<div id='mapp'>
+		<iframe  id="hellow" width='330' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sheta.map-pb93ptgv.html#14/37.42546842031163/-122.16552257537838'></iframe>
+	</div>
+
+   
+<script>
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+ </script>
+</body>
+</html>
