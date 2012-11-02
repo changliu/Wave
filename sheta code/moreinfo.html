@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>More Information</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<!--JAY H. PATEL LOOK OVER HERE AND DO NOT IGNORE THIS!!!!!!!
+	This page is displayed for EACH wave location when the user
+	wants to know more. See that yummy picture of that sandwich? 
+	THAT is where we put the single picture of the venue. Cool sauce?
+	With the text, fill it in with other interesting API info like
+	categories, contact, and some basic info. This should elaborate
+	on the information provided in the accordion menu.
+-->
+<img class="bg" src="./ikes.jpeg"/>
+<div id = "moreinf">
+<h2> WAVE DETAILS </h2>
+<p id = "text"> Here is where even some more details about the place are.
+	JAY FOR FOURSQUARE API: The "categories", "contact", and some basic info should be here.
+</p>
+
+
+<div id = "getout">
+<a  class = "na" href="locals.html">Back</a>
+<a  class = "na" href="done.html">Ride this Wave</a>
+</div>
+</div>
+
+
+<script>
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+ </script>
+</body>
+</html>
