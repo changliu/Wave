@@ -69,8 +69,9 @@
 
           var query = "https://api.foursquare.com/v2/venues/search";   
           params = new Object();
-          params.ll = "37.4280827,122.1739237";
+          params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
           params.limit = 10;
+          params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
           $.ajax({
             url: query,
             dataType: 'json',
