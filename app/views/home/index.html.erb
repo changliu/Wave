@@ -1,4 +1,7 @@
-<img class="bg" src="/assets/bg.png"/>
+
+<img class="bg" src="one.jpg"/>
+<img class="bg" src="four.jpeg"/>
+<img class="bg" src="five.jpg"/>
 
 
 	<div>
@@ -6,13 +9,13 @@
         
 	</div>
 
-	<div class = "links">
-		<div class="friend_wave">
-		    <a href="/soc_wave_list" > RIDE A WAVE WITH FRIENDS </a>
-		</div>
-		<div class="local_wave">
- 			<a href="/loc_wave_list" > RIDE A NEARBY WAVE </a>
-		</div>
+
+    <div id ="heythere"><p class = "enterone">HEY THERE!</p></div>	
+	<div id="friendslink"><a href="/soc_wave_list"><p class = "enter">RIDE A WAVE WITH FRIENDS</p></a></div>
+	<div id="wavelink"><a href="/loc_wave_list"><p class = "entertwo"> RIDE A NEARBY WAVE </p></a></div>
+
+
+		<!--
    		<div class="mood">
 		    <a href="/soc_mood_picker" >I'M FEELING LIKE...</a>
    		</div>
@@ -20,4 +23,30 @@
 		<div class="circle">
 		    <a href="/friend_circle" >MY FRIENDS ARE...</a>
    		 </div>
+   		-->
 	</div>
+
+	<script type="text/javascript">
+	
+	test();
+	
+	function test() {
+	/* I am changing this code here */
+	for(i=0; i< 200; i++){
+    	$("img").each(function(index) {
+        	$(this).hide();
+        	$(this).delay(6000* index).fadeIn(8000).fadeOut();
+    	});
+		}
+	}
+
+</script>
+<script>
+	var a=document.getElementsByTagName("a");
+	for(var i=0;i<a.length;i++){
+    	a[i].onclick=function(){
+        	window.location=this.getAttribute("href");
+        	return false
+    	}
+	}
+	</script>
