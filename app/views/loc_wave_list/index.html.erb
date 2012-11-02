@@ -3,53 +3,89 @@
     <h1>NEARBY WAVES</h1>
   </div>
 
-  <div data-role="content" >
-    <div id="top_nav">
-    <a href="/">HOME</a>
-    <a href="/">BACK</a>
+  <!-- <div data-role="content" > -->
+
+  <style>
+    body{
+      background-image:url("gradient.jpg");
+      background-repeat: both;
+    }
+  </style>
+
+
+  <img class="bgi" src="./gradient.jpg"/>
+<div id = "introduction">
+<h1 id = "waves"> Waves Near You </h1>
+</div>
+
+<div id="AccordionContainer" class="AccordionContainer">
+  <div id = "links">
+<a  class = "nav" href="index.html">Back to Exploring</a>
+</div>
+  <div onclick="runAccordion(1);">
+    <div class="AccordionTitle" onselectstart="return false;">
+      CANTOR ARTS CENTER
     </div>
-
-    <iframe width='300' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/manako.map-7ldlad0z.html#17/37.44476078748768/-122.16180306625039'></iframe>
-    
-   <div>	  
-    <ul class="accordion">
- 
-    <li>
-        <a>
-          <img class="wave_icon" src="wave_icon/bike.svg"/>
-          <img class="wave_icon" src="wave_icon/surf.svg"/>
-          CANTOR ART CENTER</a>
-        <div class="detail">
-          <p class="info">
-            Check out the extensive collection of art spanning from antiquity to the present day – all for free. Richard Serra's sculpture "Sequence" is on display until 2016, when it will be moved to the SFMOMA. 
-          </p>  
+  </div>
+  <div id="Accordion1Content" class="AccordionContent">
+     Here is where you put some basic information about Cantor Arts
+     Center. JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
+     <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
+       <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
+  </div>
 
 
+  <div onclick="runAccordion(2);">
+    <div class="AccordionTitle" onselectstart="return false;">
+      IKE'S PLACE
+    </div>
+  </div>
+  <div id="Accordion2Content" class="AccordionContent">
+    Here is where you put some basic information about Ike's Place.
+    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
+    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
+      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
+  </div>
 
-        <a href="loc_wave_list/wave_final" > RIDE THE WAVE </a>
-        <a href="loc_wave_list/wave_detail"> SHOW ME MORE </a>
-        </div>
-    </li>
-    
-     <li>
-        <a>STANFORD MEMORIAL CHURCH</a>
-        <div class="detail">
-          <p class="info">
-          MemChu is Stanford's architectural crown jewel, with extensive mosaics and stained glass windows. Seriously damaged in both the 1906 and 1989 earthquakes, it reopened once again in 1992.
-        </p>
-        <a href="loc_wave_list/wave_final"> RIDE THE WAVE </a>
-        <a href="loc_wave_list/wave_detail"> SHOW ME MORE </a>
-        </div>
-    </li>
-    
-     
-    
-</ul>
+
+  <div onclick="runAccordion(3);">
+    <div class="AccordionTitle" onselectstart="return false;">
+      MEMORIAL CHURCH
+    </div>
+  </div>
+  <div id="Accordion3Content" class="AccordionContent">
+    Here is where you put some basic information about Memorial Church.
+    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
+    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
+      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
+  </div>
+
+
+  <div onclick="runAccordion(4);">
+    <div class="AccordionTitle" onselectstart="return false;">
+      HOOVER TOWER
+    </div>
+  </div>
+  <div id="Accordion4Content" class="AccordionContent">
+    Here is where you put some basic information about Hoover Tower.
+    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
+    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
+     <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
+  </div>
 
 
 </div>
-</div> 
 
+
+<script>
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+  </script>
 
 <script type="text/javascript">
 			
@@ -76,12 +112,21 @@
             url: query,
             dataType: 'json',
             data: params,
-            success: query_success
+            success: fs_query_success
           });
         }
 
-        function query_success(data){
+        function fs_query_success(data){
           console.log(data);
+          var groups = data.response.groups;
+          for(var i=0;i<groups.length;i++){
+            var items = groups[i].items;
+            for(var j=0;j<items.length;j++){
+              var venue = items[j];
+              var venue_name = venue.name;
+              console.log(venue_name);
+            }
+          }
         }
 
         function error(msg){
@@ -90,3 +135,62 @@
 		});
 				
 	</script>
+
+
+  <script>
+var ContentHeight = 100;
+var TimeToSlide = 250.0;
+
+var openAccordion = '';
+
+function runAccordion(index)
+{
+  var nID = "Accordion" + index + "Content";
+  if(openAccordion == nID)
+    nID = '';
+    
+  setTimeout("animate(" + new Date().getTime() + "," + TimeToSlide + ",'" 
+      + openAccordion + "','" + nID + "')", 33);
+  
+  openAccordion = nID;
+}
+
+function animate(lastTick, timeLeft, closingId, openingId)
+{  
+  var curTick = new Date().getTime();
+  var elapsedTicks = curTick - lastTick;
+  
+  var opening = (openingId == '') ? null : document.getElementById(openingId);
+  var closing = (closingId == '') ? null : document.getElementById(closingId);
+ 
+  if(timeLeft <= elapsedTicks)
+  {
+    if(opening != null)
+      opening.style.height = ContentHeight + 'px';
+    
+    if(closing != null)
+    {
+      closing.style.display = 'none';
+      closing.style.height = '0px';
+    }
+    return;
+  }
+ 
+  timeLeft -= elapsedTicks;
+  var newClosedHeight = Math.round((timeLeft/TimeToSlide) * ContentHeight);
+
+  if(opening != null)
+  {
+    if(opening.style.display != 'block')
+      opening.style.display = 'block';
+    opening.style.height = (ContentHeight - newClosedHeight) + 'px';
+  }
+  
+  if(closing != null)
+    closing.style.height = newClosedHeight + 'px';
+
+  setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
+      + closingId + "','" + openingId + "')", 33);
+}
+
+</script>
