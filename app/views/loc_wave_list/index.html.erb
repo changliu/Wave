@@ -20,8 +20,12 @@
 
 <div id="AccordionContainer" class="AccordionContainer">
   <div id = "links">
-<a  class = "nav" href="index.html">Back to Exploring</a>
-</div>
+    <a class = "nav" href="index.html">Back to Exploring</a>
+  </div>
+
+
+
+<!--
   <div onclick="runAccordion(1);">
     <div class="AccordionTitle" onselectstart="return false;">
       CANTOR ARTS CENTER
@@ -72,6 +76,8 @@
     <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
   </div>
+-->
+
 
 
 </div>
@@ -106,7 +112,7 @@
           var query = "https://api.foursquare.com/v2/venues/search";   
           params = new Object();
           params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
-          params.limit = 10;
+          params.limit = 5;
           params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
           $.ajax({
             url: query,
@@ -124,7 +130,15 @@
             for(var j=0;j<items.length;j++){
               var venue = items[j];
               var venue_name = venue.name;
+              var distance = venue.location["distance"];
               console.log(venue_name);
+
+              // display venue on page
+              var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'>" + venue_name + "</div></div>";
+              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<a class = 'navi' href='loc_wave_list/wave_detail'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final'>RIDE THIS WAVE</a></div>";
+
+              $(".AccordionContainer").append(title);
+              $(".AccordionContainer").append(content);
             }
           }
         }
