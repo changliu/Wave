@@ -1,4 +1,4 @@
-<div data-role="page" >
+   <div data-role="page" >
 
   <script>
 var ContentHeight = 100;
@@ -160,10 +160,11 @@ function animate(lastTick, timeLeft, closingId, openingId)
           debug = position;
           console.log(debug);
 
-          var query = "https://api.foursquare.com/v2/venues/search";   
+          var query = "https://api.foursquare.com/v2/venues/explore";   
           params = new Object();
           params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
           params.limit = 5;
+          oarams.section = "arts"
           params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
           $.ajax({
             url: query,

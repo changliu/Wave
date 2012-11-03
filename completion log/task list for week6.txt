@@ -1,0 +1,31 @@
+navigation bar on top of screen
+icons for mood picker
+implement wave size-distance icon
+
+
+
+the mood picker:
+more tags towards meetup genre,n add current loc and time frame info
+choose your feelings and will add param feeling to the events that your corresponding group of people are going to
+
+
+
+flow:
+splash screen: short tutorial and explanation on how wave works
+
+loc wave: Jay: adding venue pic, wave icons, undefined, jquery mobile frontend bug, update map
+
+1st ( Sheta): mood + time frame + login option ( next button will take users to login screen) login submit or next goes to next screen
+task: add tags there are more towards meetup, add time constrain, implement login link, make multi select work, make intuitive for users
+
+
+
+
+	1st login (optional): when clicking submit, modify circles and then to 2nd screen
+
+2nd(Chang and Sheta): wave list based on mood and friend circles, option button
+
+3rd(Chang): wave detail showing relavant info, rsvp for meetup
+
+4th: wave final page(recycle), share with friends?
+
