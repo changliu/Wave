@@ -1,20 +1,72 @@
- <div>
- <h2>Cantor Art Center</h2>
- </div>
 
- <div>
-    <p>
-      Show map of this place<br>
-      show yelp or foursqaure reviews of this place<br>
-      Show more pictures of this place<br>
-      Add directions option if have time
 
-    </p>
-<img src="http://www.terragalleria.com/images/us-ca/usca33416.jpeg"></img>
+<div id="bgimg">
+</div>
+<img class="bg" src="/assets/ikes.jpeg"/>
+<div id = "moreinf">
+<h2> WAVE DETAILS </h2>
+<p id="text">
 
- </div>
- <div>
- <a href="soc_wave_list/wave_final">Ride this wave</a>
- </div>
+</p>
 
- <a href="/"> home </a>
+<div id = "getout">
+<a  class = "na" href="../loc_wave_list">Back</a>
+<a  class = "na" href="wave_final">Ride this Wave</a>
+</div>
+</div>
+
+
+
+
+<script>
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+   var vars = [], hash;
+  var q = document.URL.split('?')[1];
+  console.log(q);
+  if(q != undefined){
+    q = q.split('&');
+    for(var i = 0; i < q.length; i++){
+      hash = q[i].split('=');
+      vars.push(hash[1]);
+      vars[hash[0]] = hash[1];
+    }
+	}
+
+	var id = vars['id'];
+	console.log(id);
+	// var description = vars['description'];
+	var dist = vars['dist'];
+	// var icon = vars['icon'];
+	var name = vars['name'];
+	console.log(name);
+	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
+
+/*
+	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   
+  params = new Object();
+  params.group = "venue";
+  params.limit = 1;
+  params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+  $.ajax({
+    url: query,
+    dataType: 'json',
+    data: params,
+    success: fs_query_success
+  });
+
+  function fs_query_success(data){
+  	var photo = data.response.photos;
+  	console.log(photo);
+  	var url = photo.prefix + "530x224" + photo.suffix;
+
+  	var img = "<img src='" + url + "' class='bg'/>";
+  	$("#bgimg").html(img);
+  }
+  */
+ </script>
