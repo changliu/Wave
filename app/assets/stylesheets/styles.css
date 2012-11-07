@@ -112,7 +112,7 @@ h1{
   color: white;
   margin-left: 80px;
   margin-top: 40px;
-  float:left;
+  /*float:left;*/
   font-family: 'League Gothic';
 }
 
@@ -247,7 +247,7 @@ h1{
 .AccordionContainer
 {
 
-margin-top: 145px;
+/*margin-top: 145px;*/
 height: 319px;
  
 }
