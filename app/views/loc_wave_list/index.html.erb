@@ -160,10 +160,11 @@ function animate(lastTick, timeLeft, closingId, openingId)
           debug = position;
           console.log(debug);
 
-          var query = "https://api.foursquare.com/v2/venues/search";   
+          var query = "https://api.foursquare.com/v2/venues/explore";   
           params = new Object();
           params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
           params.limit = 5;
+          params.section = "arts";
           params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
           $.ajax({
             url: query,
@@ -176,14 +177,15 @@ function animate(lastTick, timeLeft, closingId, openingId)
         function fs_query_success(data){
           
           var groups = data.response.groups;
-
+          console.log(groups);
           for(var i=0;i<groups.length;i++){
             var items = groups[i].items;
-            console.log(items);
+            
             for(var j=0;j<items.length;j++){
 
-              var venue = items[j];
-              console.log(venue);
+              var venue_obj = items[j];
+              var venue = venue_obj.venue;
+              console.log(venue); 
 
               var venue_name = venue.name;
               var venue_id = venue.id;
