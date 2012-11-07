@@ -338,6 +338,7 @@ h2{
 #mapp{
   margin-top: 40px;
   z-index: ;
+  text-align:center;
 }
 
 
@@ -350,7 +351,7 @@ h2{
   font-family: Helvetica;
   margin-left: 60px;
   font-size: 9pt;
-
+  text-align:center;
 }
 
 #or{
@@ -358,7 +359,7 @@ h2{
    margin-left: 150px;
    font-size: 18pt;
    margin-top: 10px;
-
+   text-align: center;
 }
 
 #notibutton{
@@ -376,6 +377,7 @@ h2{
 #again{
 margin-left: 60px;
 margin-top: 20px;
+text-align: center;
 }
 
 
