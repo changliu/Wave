@@ -1,4 +1,4 @@
-<div data-role="page" >
+   <div data-role="page" >
 
   <script>
 var ContentHeight = 100;
@@ -174,14 +174,21 @@ function animate(lastTick, timeLeft, closingId, openingId)
         }
 
         function fs_query_success(data){
-          console.log(data);
+          
           var groups = data.response.groups;
+
           for(var i=0;i<groups.length;i++){
             var items = groups[i].items;
+            console.log(items);
             for(var j=0;j<items.length;j++){
+
               var venue = items[j];
+              console.log(venue);
+
               var venue_name = venue.name;
               var venue_id = venue.id;
+              console.log(venue_name);
+              console.log(venue.contact);
               var venue_contact = venue.contact["formattedPhone"];
               var venue_category = venue.categories[0].name;
               var venue_category_icon = venue.categories[0].icon;
