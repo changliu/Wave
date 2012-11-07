@@ -54,9 +54,9 @@
 	var icon = vars['icon'];
 	var name = vars['name'];
 
-	if(jQuery.type(contact) === "undefined"){
+	if (contact == "undefined"){
 		$("#text").html(unescape(name) + "<br/>" + unescape(category));
-	} else{
+	} else {
 		$("#text").html(unescape(name) + "<br/>" + unescape(category) + "<br/>" + unescape(contact));
 	}
 /*
