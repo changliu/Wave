@@ -1,106 +1,180 @@
-<?php
 
-$client_id = "ADD YOUR APP CLIENT ID";
-$secret = "ADD YOUR APP SECRET";
-$redirect = "ADD YOUR APP CALLBACK URL";
+  <style>
+    body{
+      background-image:url("/assets/bg.png");
+      background-repeat: both;
+    }
+  </style>
 
-if($_GET['code']){
-//We need to hit up the authkey URL and get the key in JSON format
-$authkey = file_get_contents("https://foursquare.com/oauth2/access_token?client_id=".$client_id."&client_secret=".$secret."&grant_type=authorization_code&redirect_uri=".$redirect."&code=".$_GET['code']);
-//We then need to decode it and store that key in a variable (or in a database)
 
-system.out.println($_GET['code']);
-$decoded_auth = json_decode($authkey,true);
-$access_token = $decoded_auth['access_token'];
-//we then look up whatever endpoint of the api we want
-$userinfo = file_get_contents("https://api.foursquare.com/v2/users/self?oauth_token=".$access_token);
-$decoded_userinfo = json_decode($userinfo, true);
-$name = $decoded_userinfo['response']['user']['firstName'];
-}
-?>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <img class="bgi" src="/assets/bg.png"/>
 
-<head>
-	<title>16 Map Test</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 0.20" /> -->
-	
-<!-- </head>
 
-<body> -->
-	<style>
-		body{
-			background-color: #A5B594;
-			font-family: serif;
+<div id="AccordionContainer" class="AccordionContainer">
+  <h1 id = "waves"> Friendly Waves </h1>
+  <div id = "links">
+<a  class = "nav" href=".." >Back to Exploring</a>
+</div>
+</div>
+
+<script>
+	//make browser bar disppear
+	var a=document.getElementsByTagName("a");
+		for(var i=0;i<a.length;i++){
+		  	a[i].onclick=function(){
+		      	window.location=this.getAttribute("href");
+		      	return false
+		  	}
 		}
-		#content{
-			margin: auto;
-			width: 70%;
-			padding: 25px;
-			border-radius: 10px;
-			background-color: #828C35;
-			box-shadow: 1px 1px 5px grey;
-		}
-		#content h1{
-			font-size: 10em;
-			color: #6F7306;
-			text-shadow: 0px 1px 0px #6F7306, 0px -1px 0px #5C4A14;
-			text-align: center;
-		}
-		#content p{
-			color: #5C4A14;
-			font-size: 2em;
-		}
-		#content p a{
-			color: #5C4A14;
-			text-shadow: 1px 1px 50px #FFFFFF;
-		}
-		#footer{
-			position: absolute;
-			bottom: 0px;
-			width: 99%;
-			color: #828C35;
-		}
-		#footer .left{
-			float: left;
-			clear: right;
-		}
-		#footer .right{
-			float: right;
-			width: 236px;
-		}
-	</style>
+</script>
+
 
 	<script>
-		var vars = [], hash;
-	  	var q = document.URL.split('?')[1];
-	  	if(q != undefined){
-    		q = q.split('&');
-    		for(var i = 0; i < q.length; i++){
-      			hash = q[i].split('=');
-	      		vars.push(hash[1]);
-    	  		vars[hash[0]] = hash[1];
-    		}
-		}
-		var code = vars['code'];
-		console.log(code);
+    	$(document).ready(function () {
+    		$('ul.accordion').accordion();
+
+		  	// get access_token to use for authenticated api calls
+			var access_token;
+			  	var q = document.URL.split('#')[1];
+			  	if(q != undefined){
+		    		q = q.split('=')[1];
+		    		access_token = q;
+		    		}
+
+		  	if (navigator.geolocation) {
+          		navigator.geolocation.getCurrentPosition(success, error);
+		        } else {console.debug('not supported');
+        	}
+
+	    function error() {
+	        console.debug("user geolocation is not supported")}
+	    function success(position) {
+
+	        // var query = "https://api.foursquare.com/v2/venues/explore";   
+	        // params = new Object();
+	        // params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
+	        // params.limit = 10;
+	        // params.section = "arts";
+	        // params.oauth_token = access_token;
+	        // $.ajax({
+	        //   url: query,
+	        //   dataType: 'json',
+	        //   data: params,
+	        //   success: fs_query_success
+	        // }); 
+
+
+
+	        //get all friends!!!
+
+			var friend_list = "https://api.foursquare.com/v2/users/self/friends";
+
+			var params = new Object();
+			params.oauth_token = access_token;
+			$.ajax({
+	            url: friend_list,
+	            type: 'get',
+	            dataType: 'jsonp',
+	            data:params,
+	            success: fs_query_success
+	          });
+	      }
+
+	     // IF SUCCESS, PARSE JSON DATA AND DISPLAY THE VENUE LIST INTO ACCORDION
+	     // returned data might have changed, need to fix bugs on wave icon
+	    function fs_query_success(data){
+	    		var friends = data.response.friends.items;
+		    	console.log(friends);
+		    	for(var i = 0 ; i < friends.length; i++) {
+		    		var friend_fn = friends[i].firstName;
+		    		var friend_ln = friends[i].lastName;
+		    		console.log(friend_fn, friend_ln);
+
+	            var title = "<div onclick='runAccordion(" + 1 + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><div>" + friend_fn + friend_ln + "</div></div>";
+
+	          
+	                      // pass on venue name, distance, id, token to show me more
+            	var content = "<div id='Accordion" + i + "Content' class='AccordionContent'><br/> " + friend_fn+  friend_ln  +  " <br/><br/></div>";
+	            $(".AccordionContainer").append(title);
+
+	           	$(".AccordionContainer").append(content);
+	        }
+	        }      
+
+
+
+
+
+			function jsonpCallback(data) {
+				console.log(data);
+			}
+
+
+
+			var listed = "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
+
+		});
 
 
 	</script>
 
-	<div id="content">
 
-	<h1>Hello <?php echo $name; ?></h1>
-	<p>Crazy stuff</p>
+	  <script>
+var ContentHeight = 100;
+var TimeToSlide = 250.0;
+
+var openAccordion = '';
+
+function runAccordion(index)
+{
+  var nID = "Accordion" + index + "Content";
+  if(openAccordion == nID)
+    nID = '';
+    
+  setTimeout("animate(" + new Date().getTime() + "," + TimeToSlide + ",'" 
+      + openAccordion + "','" + nID + "')", 33);
+  
+  openAccordion = nID;
+}
+
+function animate(lastTick, timeLeft, closingId, openingId)
+{  
+  var curTick = new Date().getTime();
+  var elapsedTicks = curTick - lastTick;
+  
+  var opening = (openingId == '') ? null : document.getElementById(openingId);
+  var closing = (closingId == '') ? null : document.getElementById(closingId);
+ 
+  if(timeLeft <= elapsedTicks)
+  {
+    if(opening != null)
+      opening.style.height = ContentHeight + 'px';
+    
+    if(closing != null)
+    {
+      closing.style.display = 'none';
+      closing.style.height = '0px';
+    }
+    return;
+  }
+ 
+  timeLeft -= elapsedTicks;
+  var newClosedHeight = Math.round((timeLeft/TimeToSlide) * ContentHeight);
+
+  if(opening != null)
+  {
+    if(opening.style.display != 'block')
+      opening.style.display = 'block';
+    opening.style.height = (ContentHeight - newClosedHeight) + 'px';
+  }
+  
+  if(closing != null)
+    closing.style.height = newClosedHeight + 'px';
+
+  setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
+      + closingId + "','" + openingId + "')", 33);
+}
+
+</script>
+
 	
-	</div>
-
-	<div id="footer">
-	<p class="left">This application uses the foursquare<sup>TM</sup> application programming interface but is not endorsed or certified by Foursquare Labs, Inc</p>
-	<p class="right"><img src="http://colinwren.com/projects/route/poweredbyfoursquare-mark.png" /></p>
-	</div>
-<!-- </body>
-
-</html> -->

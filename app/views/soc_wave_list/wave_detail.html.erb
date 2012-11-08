@@ -6,9 +6,9 @@
 <!-- <img class="bg" src="/assets/ikes.jpeg"/> -->
 <div id = "moreinf">
 <!-- <h2> WAVE DETAILS </h2> -->
-<h2 id = "header"> </h2>
+<h2 id = "header" > </h2>
 <p id="text">
-
+<br/>
 </p>
 
 <div id = "getout">
@@ -47,7 +47,7 @@
 	console.log(name);
 
 
-	$("#header").append("<h2>" + unescape(name) + "</h2>");
+	$("#header").append("<h2 style='font-size:30px'>" + unescape(name) + "</h2>");
 	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
 
 	//query to download all photos links of a venue
@@ -78,13 +78,25 @@
 //right now, it only shows the first photo as a static image
    function fs_photo_query_success(data) {
         var photo = data.response.photos.items[0].sizes.items[1].url;
-        var bg_img = "<img class='bg' src=" + photo + " style='opacity:0.7'" + " />";
+        var bg_img = "<img class='bg' src=" + photo  + " />";
         $("#bgimg").append(bg_img);
 
     }
 
     function fs_tips_query_success(data) {
-    	console.log(data);
+    	var tips = data.response.tips.items;
+    	console.log(tips);
+
+    	for( var i = 0; i < Math.min(3, tips.length); i++) {
+    		var tip = tips[i];
+    		var text = tip.text;
+    		var user = tip.user.firstName;
+    		console.log(user);
+    		$("#text").append("<p> " + user + " said: " + text + " <br/><br/></p>");
+    	}
+
+
+
     }
 
 
