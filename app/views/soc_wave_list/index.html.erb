@@ -10,9 +10,9 @@
 
 
   <img class="bgi" src="/assets/bg.png"/>
-<div id = "introduction">
+<!-- <div id = "introduction">
 
-</div>
+</div> -->
 
 
 <div id="AccordionContainer" class="AccordionContainer">
@@ -20,51 +20,6 @@
   <div id = "links">
 <a  class = "nav" href=".." >Back to Exploring</a>
 </div>
- <!--  <div onclick="runAccordion(1);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      CANTOR ARTS CENTER
-    </div>
-  </div>
-  <div id="Accordion1Content" class="AccordionContent">
-     Here is where you put some basic information about Cantor Arts
-     Center. JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-     <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-       <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-
-  <div onclick="runAccordion(2);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      IKE'S PLACE
-    </div>
-  </div>
-  <div id="Accordion2Content" class="AccordionContent">
-    Here is where you put some basic information about Ike's Place.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-  <div onclick="runAccordion(3);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      MEMORIAL CHURCH
-    </div>
-  </div>
-  <div id="Accordion3Content" class="AccordionContent">
-    Here is where you put some basic information about Memorial Church.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-  <div onclick="runAccordion(4);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      HOOVER TOWER
-    </div>
-  </div>
-  <div id="Accordion4Content" class="AccordionContent">
-    Here is where you put some basic information about Hoover Tower.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-     <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div> -->
 </div>
 
 
@@ -89,137 +44,90 @@
           console.debug('not supported');
         }
 
-        function success(position) {
+      function error() {
+        console.debug("user geolocation is not supported")
+      }
+      function success(position) {
 
 
-// Meetup API call
-          // var query = "https://api.meetup.com/2/open_events?";
-          // params = new Object();
-          // params.key = "422a4d16a2332e2b664975792b5116";
-          // params.sign = true;
-          // params.lat = position.coords["latitude"];
-          // params.lon = position.coords["longitude"];
-          // params.radius = 2;
-          // params.page = 5;
-          // console.log("ready to query api...");
-          // console.log(query);
-          // $.ajax({
 
-          //   url: query,
-          //   dataType: "jsonp",
-          //   jsonpCallback:"jsoncallback",
-          //   data: params,
-          //   success: fs_query_success
+        var query = "https://api.foursquare.com/v2/venues/explore";   
+        params = new Object();
+        params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
+        params.limit = 10;
+        params.section = "arts";
+        params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+        $.ajax({
+          url: query,
+          dataType: 'json',
+          data: params,
+          success: fs_query_success
+        }); 
+      }
 
-          // });
+      function fs_query_success(data){
+        var groups = data.response.groups;
+        for(var i=0;i<groups.length;i++){
+          var items = groups[i].items;  
+          for(var j=0;j<items.length;j++){
+            var venue_obj = items[j];
+            var venue = venue_obj.venue;
 
-          var query = "https://api.foursquare.com/v2/venues/explore";   
-          params = new Object();
-          params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
-          params.limit = 10;
-          params.section = "arts";
-          params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
-          $.ajax({
-            url: query,
-            dataType: 'json',
-            data: params,
-            success: fs_query_success
-          });
+            //get the tips to display on the accordion
+            var tips_obj = venue_obj.tips;
+            tips = tips_obj[0];
+            tips_user = tips.user.firstName;
 
 
-          
-        }
+            //get ratings to display in accordion
+            var rating = venue.rating;
 
 
-        function error(msg){
-          console.log("could not get location of user");
-        }
-
-        function fs_query_success(data){
-
-          // meetup data parse
-          // console.log("sucess getting data");
-          // var results = data.results;
-          // for(var i = 0; i < results.length; i++) {
-          //   var result = results[i];
-          //   console.log(result);
-          //   var meetup_name = result.name;
-          //   var meetup_id = result.id;
-          //   var dist = result.distance;
-          //   var event_url = result.event_url;
-          //   var description = result.description;
-          //   var rsvp_cnt = result.yes_rsvp_count;
-            // var new_description = description.replace(/(<([^>]+)>)/ig,""); 
-
-          var groups = data.response.groups;
-          // console.log(groups);
-          for(var i=0;i<groups.length;i++){
-            var items = groups[i].items;
+            //get other relevatn info from venue
+            var venue_name = venue.name;
+            var venue_id = venue.id;
+            var venue_contact = venue.contact["formattedPhone"];
             
-            for(var j=0;j<items.length;j++){
 
-              var venue_obj = items[j];
-              var venue = venue_obj.venue;
-              // console.log(venue);
-              //get the tips to display on the accordion
-              var tips_obj = venue_obj.tips;
-              tips = tips_obj[0];
-              tips_user = tips.user.firstName;
-              // console.log(tips_user);
-
-              var venue_name = venue.name;
-              var venue_id = venue.id;
-              var venue_contact = venue.contact["formattedPhone"];
-              var venue_category = venue.categories[0].name;
-              var venue_category_icon = venue.categories[0].icon;
-              
-
-              //mapping venue distance, popularity onto wave icons
-              var distance = venue.location["distance"]/1600;
-              var checkins = venue.stats.checkinsCount;
-              console.log(checkins);
+            //mapping venue distance in miles, popularity onto wave icons
+            var distance = venue.location["distance"]/1600;
+            var checkins = venue.stats.checkinsCount;
 
 
-              //map the distance icon
-              var dist_icon_path = "";
-              if (distance < 1.0) {
-                dist_icon_path = "/assets/wave_icon/walk.svg";
-              }
-              else if (distance > 2.0) {
-                dist_icon_path = "/assets/wave_icon/car.svg";
-              }
-              else {dist_icon_path = "/assets/wave_icon/bike.svg";}
-              ;
 
-              //map using checkin amount
+            //map the distance icon
+            var dist_icon_path = "";
+            if (distance < 1.0) {
+              dist_icon_path = "/assets/wave_icon/walk.svg";
+            }
+            else if (distance > 2.0) {
+              dist_icon_path = "/assets/wave_icon/car.svg";
+            }
+            else {dist_icon_path = "/assets/wave_icon/bike.svg";}
+            
 
-              var checkin_icon_path = "";
-              if (checkins > 5000) {
-                checkin_icon_path = "/assets/wave_icon/ship.svg";
-
-              }
-              else if (checkins < 1000) {
-                checkin_icon_path = "assets/wave_icon/swim.svg";
-              }
-              else {checkin_icon_path = "assets/wave_icon/surf.svg";}
-              ;
-              console.log(venue_id);
-
-             
+            //map using checkin amount
+            var checkin_icon_path = "";
+            if (checkins > 5000) {
+              checkin_icon_path = "/assets/wave_icon/ship.svg";
+            }
+            else if (checkins < 1000) {
+              checkin_icon_path = "assets/wave_icon/swim.svg";
+            }
+            else {checkin_icon_path = "assets/wave_icon/surf.svg";}
 
 
-              var token_str = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+            var token_str = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
 
 
             var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
-            
+          
             // pass on venue name, distance, id, token to show me more
-            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> " + tips_user + " said: "+  tips.text  + " <br/><br/><a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&token=" + token_str + "&name=" + venue_name +"'>SHOW ME MORE</a><a class='navi' href='soc_wave_list/wave_final?id=" + venue_id + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
-            
+            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> " + tips_user + " said: "+  tips.text  + "<br/><br/> Rating: " + rating.toFixed(1) + "/10 <br/><br/><a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&token=" + token_str + "&name=" + venue_name +"'>SHOW ME MORE</a><a class='navi' href='soc_wave_list/wave_final?id=" + venue_id + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
+          
 
             $(".AccordionContainer").append(title);
             $(".AccordionContainer").append(content);
-
           }
         }
         }      
@@ -294,3 +202,43 @@ function animate(lastTick, timeLeft, closingId, openingId)
 }
 
 </script>
+
+
+
+
+<!-- Meetup API call
+          var query = "https://api.meetup.com/2/open_events?";
+          params = new Object();
+          params.key = "422a4d16a2332e2b664975792b5116";
+          params.sign = true;
+          params.lat = position.coords["latitude"];
+          params.lon = position.coords["longitude"];
+          params.radius = 2;
+          params.page = 5;
+          console.log("ready to query api...");
+          console.log(query);
+          $.ajax({
+
+            url: query,
+            dataType: "jsonp",
+            jsonpCallback:"jsoncallback",
+            data: params,
+            success: fs_query_success
+
+          }); -->
+
+
+<!--           
+          //meetup data parse
+          console.log("sucess getting data");
+          var results = data.results;
+          for(var i = 0; i < results.length; i++) {
+            var result = results[i];
+            console.log(result);
+            var meetup_name = result.name;
+            var meetup_id = result.id;
+            var dist = result.distance;
+            var event_url = result.event_url;
+            var description = result.description;
+            var rsvp_cnt = result.yes_rsvp_count;
+            var new_description = description.replace(/(<([^>]+)>)/ig,"");  -->

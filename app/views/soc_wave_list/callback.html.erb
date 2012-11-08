@@ -1,0 +1,180 @@
+
+  <style>
+    body{
+      background-image:url("/assets/bg.png");
+      background-repeat: both;
+    }
+  </style>
+
+
+  <img class="bgi" src="/assets/bg.png"/>
+
+
+<div id="AccordionContainer" class="AccordionContainer">
+  <h1 id = "waves"> Friendly Waves </h1>
+  <div id = "links">
+<a  class = "nav" href=".." >Back to Exploring</a>
+</div>
+</div>
+
+<script>
+	//make browser bar disppear
+	var a=document.getElementsByTagName("a");
+		for(var i=0;i<a.length;i++){
+		  	a[i].onclick=function(){
+		      	window.location=this.getAttribute("href");
+		      	return false
+		  	}
+		}
+</script>
+
+
+	<script>
+    	$(document).ready(function () {
+    		$('ul.accordion').accordion();
+
+		  	// get access_token to use for authenticated api calls
+			var access_token;
+			  	var q = document.URL.split('#')[1];
+			  	if(q != undefined){
+		    		q = q.split('=')[1];
+		    		access_token = q;
+		    		}
+
+		  	if (navigator.geolocation) {
+          		navigator.geolocation.getCurrentPosition(success, error);
+		        } else {console.debug('not supported');
+        	}
+
+	    function error() {
+	        console.debug("user geolocation is not supported")}
+	    function success(position) {
+
+	        // var query = "https://api.foursquare.com/v2/venues/explore";   
+	        // params = new Object();
+	        // params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
+	        // params.limit = 10;
+	        // params.section = "arts";
+	        // params.oauth_token = access_token;
+	        // $.ajax({
+	        //   url: query,
+	        //   dataType: 'json',
+	        //   data: params,
+	        //   success: fs_query_success
+	        // }); 
+
+
+
+	        //get all friends!!!
+
+			var friend_list = "https://api.foursquare.com/v2/users/self/friends";
+
+			var params = new Object();
+			params.oauth_token = access_token;
+			$.ajax({
+	            url: friend_list,
+	            type: 'get',
+	            dataType: 'jsonp',
+	            data:params,
+	            success: fs_query_success
+	          });
+	      }
+
+	     // IF SUCCESS, PARSE JSON DATA AND DISPLAY THE VENUE LIST INTO ACCORDION
+	     // returned data might have changed, need to fix bugs on wave icon
+	    function fs_query_success(data){
+	    		var friends = data.response.friends.items;
+		    	console.log(friends);
+		    	for(var i = 0 ; i < friends.length; i++) {
+		    		var friend_fn = friends[i].firstName;
+		    		var friend_ln = friends[i].lastName;
+		    		console.log(friend_fn, friend_ln);
+
+	            var title = "<div onclick='runAccordion(" + 1 + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><div>" + friend_fn + friend_ln + "</div></div>";
+
+	          
+	                      // pass on venue name, distance, id, token to show me more
+            	var content = "<div id='Accordion" + i + "Content' class='AccordionContent'><br/> " + friend_fn+  friend_ln  +  " <br/><br/></div>";
+	            $(".AccordionContainer").append(title);
+
+	           	$(".AccordionContainer").append(content);
+	        }
+	        }      
+
+
+
+
+
+			function jsonpCallback(data) {
+				console.log(data);
+			}
+
+
+
+			var listed = "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
+
+		});
+
+
+	</script>
+
+
+	  <script>
+var ContentHeight = 100;
+var TimeToSlide = 250.0;
+
+var openAccordion = '';
+
+function runAccordion(index)
+{
+  var nID = "Accordion" + index + "Content";
+  if(openAccordion == nID)
+    nID = '';
+    
+  setTimeout("animate(" + new Date().getTime() + "," + TimeToSlide + ",'" 
+      + openAccordion + "','" + nID + "')", 33);
+  
+  openAccordion = nID;
+}
+
+function animate(lastTick, timeLeft, closingId, openingId)
+{  
+  var curTick = new Date().getTime();
+  var elapsedTicks = curTick - lastTick;
+  
+  var opening = (openingId == '') ? null : document.getElementById(openingId);
+  var closing = (closingId == '') ? null : document.getElementById(closingId);
+ 
+  if(timeLeft <= elapsedTicks)
+  {
+    if(opening != null)
+      opening.style.height = ContentHeight + 'px';
+    
+    if(closing != null)
+    {
+      closing.style.display = 'none';
+      closing.style.height = '0px';
+    }
+    return;
+  }
+ 
+  timeLeft -= elapsedTicks;
+  var newClosedHeight = Math.round((timeLeft/TimeToSlide) * ContentHeight);
+
+  if(opening != null)
+  {
+    if(opening.style.display != 'block')
+      opening.style.display = 'block';
+    opening.style.height = (ContentHeight - newClosedHeight) + 'px';
+  }
+  
+  if(closing != null)
+    closing.style.height = newClosedHeight + 'px';
+
+  setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
+      + closingId + "','" + openingId + "')", 33);
+}
+
+</script>
+
+	

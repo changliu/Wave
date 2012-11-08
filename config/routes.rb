@@ -4,6 +4,8 @@ Wave::Application.routes.draw do
   match '/soc_wave_list' => 'soc_wave_list#index'
   match '/soc_wave_list/wave_detail' => 'soc_wave_list#wave_detail'
   match '/soc_wave_list/wave_final' => 'soc_wave_list#wave_final'
+  match '/soc_wave_list/login' => 'soc_wave_list#login'
+  match '/soc_wave_list/callback' => 'soc_wave_list#callback'
 
   match '/loc_wave_list' => 'loc_wave_list#index'
   match '/loc_wave_list/wave_detail' => 'loc_wave_list#wave_detail'

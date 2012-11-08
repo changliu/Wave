@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Your Circles</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="application.css" rel="stylesheet" type="text/css">
+	<link href="stylesheet.css" rel="stylesheet" type="text/css">
+	<link rel="apple-touch-icon-precomposed" href="icon.jpg"/>  
+	<link rel="apple-touch-startup-image" href="startuponeyes.png">
+
+</head>
+<body>
+	<div id = "container">
+		<div id = "main">
+			<div id = "topImage" style="height: 150px; width: 100%;">
+				<div id = "nameInfo" style="height: 50px; width: 100%">
+					<p class = "name"> Sheta Chatterjee </p>
+					<p id = "subhead">Stanford, CA </p>
+
+				</div>
+			</div>
+			<div id = "grey" style="height: 310px; width: 100%;">
+				<p class = "circleHeader">MY GROUPS</h1>
+			    <ul class="allCircles">
+					<li class="circle">
+						<span class = "grayBox">HIKING</span>
+						<a href="friendList.html">
+							<img src="hiking.jpg" />
+						</a>
+
+					</li>
+					<li class="circle">
+						<span class = "grayBox1">FOOD</span>
+						<a href="http://dribbble.com/shots/272575-Tutorials-wip-">
+							<img src="food.jpg" />
+						</a>
+					</li>
+					<li class="circle">
+						<span class = "grayBox2">ARTSY</span>
+						<a href="http://dribbble.com/shots/138484-Symplas-website">
+							<img src="artsy.jpg" />
+						</a>
+					</li>
+					<li class="circle">
+						<span class = "grayBox3">SMART</span>
+						<a href="http://dribbble.com/shots/188524-Event-Planning">
+							<img src="book.jpg" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<script>
+var a=document.getElementsByTagName("a");
+for(var i=0;i<a.length;i++){
+    a[i].onclick=function(){
+        window.location=this.getAttribute("href");
+        return false
+    }
+}
+</script>
+</body>
+</html>
