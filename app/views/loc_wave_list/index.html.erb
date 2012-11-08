@@ -75,63 +75,6 @@ function animate(lastTick, timeLeft, closingId, openingId)
     <a class = "nav" href=".." >Back to Exploring</a>
   </div>
 
-<!--
-<a  class = "nav" href=".." >Back to Exploring</a>
-</div>
-  <div onclick="runAccordion(1);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      CANTOR ARTS CENTER
-    </div>
-  </div>
-  <div id="Accordion1Content" class="AccordionContent">
-     Here is where you put some basic information about Cantor Arts
-     Center. JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-     <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-       <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-
-
-  <div onclick="runAccordion(2);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      IKE'S PLACE
-    </div>
-  </div>
-  <div id="Accordion2Content" class="AccordionContent">
-    Here is where you put some basic information about Ike's Place.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-
-
-  <div onclick="runAccordion(3);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      MEMORIAL CHURCH
-    </div>
-  </div>
-  <div id="Accordion3Content" class="AccordionContent">
-    Here is where you put some basic information about Memorial Church.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-      <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
-
-
-  <div onclick="runAccordion(4);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      HOOVER TOWER
-    </div>
-  </div>
-  <div id="Accordion4Content" class="AccordionContent">
-    Here is where you put some basic information about Hoover Tower.
-    JAY PATEL MAKE SURE YOU PUT NUMBER OF PEOPLE HERE(hereNow).
-    <a  class = "navi" href="loc_wave_list/wave_detail">SHOW ME MORE</a>
-     <a  class = "navi" href="loc_wave_list/wave_final">RIDE THIS WAVE</a>
-  </div>
--->
-
-
-
 </div>
 
 
@@ -175,7 +118,6 @@ function animate(lastTick, timeLeft, closingId, openingId)
         }
 
         function fs_query_success(data){
-          
           var groups = data.response.groups;
           console.log(groups);
           for(var i=0;i<groups.length;i++){
@@ -196,6 +138,8 @@ function animate(lastTick, timeLeft, closingId, openingId)
               var venue_category_icon = venue.categories[0].icon;
               var distance = venue.location["distance"];
               console.log(venue_name);
+
+              // also display the number of people at that location right now
 
               // display venue on page
               var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'>" + venue_name + "</div></div>";

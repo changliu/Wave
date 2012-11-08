@@ -1,5 +1,53 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7ORYECMd4dAYIgoYBdcvs1XL2oaEHPpo&sensor=true"
+  type="text/javascript"></script>
 
-	<style>
+<script type="text/javascript">
+$(document).ready(function () {
+  alert("document ready!");
+  initialize();
+
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom:7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: chicago
+  }
+  map = new google.maps.Map(document.getElementById("mapp"), mapOptions);
+  directionsDisplay.setMap(map);
+}
+
+function calcRoute() {
+  var start = document.getElementById("start").value;
+  var end = document.getElementById("end").value;
+  var request = {
+    origin:start,
+    destination:end,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(result);
+    }
+  });
+}
+}
+ </script>
+	
+  <style>
     body{
     	background-image:url("six.jpeg");
  		width:100%;
@@ -18,17 +66,6 @@
 	<a  class = "n" href="../loc_wave_list">Back to Waves</a>
     <a  class = "n" href="..">Go Home</a>
 	</div>
-	<div id='mapp'>
-		<iframe  id="hellow" width='330' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sheta.map-pb93ptgv.html#14/37.42546842031163/-122.16552257537838'></iframe>
+	<div id="mapp">
+		<!--<iframe  id="hellow" width='330' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sheta.map-pb93ptgv.html#14/37.42546842031163/-122.16552257537838'></iframe>-->
 	</div>
-
-   
-<script>
-  var a=document.getElementsByTagName("a");
-  for(var i=0;i<a.length;i++){
-      a[i].onclick=function(){
-          window.location=this.getAttribute("href");
-          return false
-      }
-  }
- </script>

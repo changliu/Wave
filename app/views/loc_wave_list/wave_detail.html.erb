@@ -24,8 +24,6 @@
 
 <div id = "getout">
 <a  class = "na" href="../loc_wave_list">Back</a>
-<a  class = "na" href="wave_final">Ride this Wave</a>
-</div>
 </div>
 
 <script>
@@ -55,13 +53,15 @@
 	var category = vars['category'];
 	var icon = vars['icon'];
 	var name = vars['name'];
-  console.log(id);
 
 	if (contact == "undefined"){
 		$("#text").html(unescape(name) + "<br/>" + unescape(category));
 	} else {
 		$("#text").html(unescape(name) + "<br/>" + unescape(category) + "<br/>" + unescape(contact));
 	}
+
+  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&category=" + category + "&icon=" + icon + "&name=" + name + "'>RIDE THIS WAVE</a></div>";
+  $("#getout").append(ride_btn);
 /*
 	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   
   params = new Object();
