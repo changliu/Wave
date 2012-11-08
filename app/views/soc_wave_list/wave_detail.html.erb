@@ -5,7 +5,8 @@
 <div class="bg"></div>
 <!-- <img class="bg" src="/assets/ikes.jpeg"/> -->
 <div id = "moreinf">
-<h2> WAVE DETAILS </h2>
+<!-- <h2> WAVE DETAILS </h2> -->
+<h2 id = "header"> </h2>
 <p id="text">
 
 </p>
@@ -45,8 +46,13 @@
 	// console.log(token);
 	console.log(name);
 
+
+	$("#header").append("<h2>" + unescape(name) + "</h2>");
+	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
+
 	//query to download all photos links of a venue
- 	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos?";   
+ 	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos?";
+ 	var query2 = "https://api.foursquare.com/v2/venues/" + id + "/tips?"   
  	    params = new Object();
         params.group = "venue"
         params.oauth_token = token;
@@ -58,43 +64,28 @@
         });
 
 
+        $.ajax({
+          	url: query2,
+            dataType: 'json',
+            data: params,
+            success: fs_tips_query_success
+        });
+
+//to be implemented: wave details on tips
+
+
 //to be implemented, all photos loaded and have a slide show in the background
 //right now, it only shows the first photo as a static image
    function fs_photo_query_success(data) {
-        // console.log(data);
         var photo = data.response.photos.items[0].sizes.items[1].url;
-        console.log(photo);
         var bg_img = "<img class='bg' src=" + photo + " style='opacity:0.7'" + " />";
         $("#bgimg").append(bg_img);
 
     }
 
-    // console.log(bg_img);
+    function fs_tips_query_success(data) {
+    	console.log(data);
+    }
 
 
-
-	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
-
-/*
-	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   
-  params = new Object();
-  params.group = "venue";
-  params.limit = 1;
-  params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
-  $.ajax({
-    url: query,
-    dataType: 'json',
-    data: params,
-    success: fs_query_success
-  });
-
-  function fs_query_success(data){
-  	var photo = data.response.photos;
-  	console.log(photo);
-  	var url = photo.prefix + "530x224" + photo.suffix;
-
-  	var img = "<img src='" + url + "' class='bg'/>";
-  	$("#bgimg").html(img);
-  }
-  */
  </script>
