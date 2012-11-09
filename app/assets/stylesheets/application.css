@@ -12,52 +12,6 @@
  *= require_tree .
 */
 
-/* from custom_style.css file*/
-/*
-* {
-  margin:0;
-  padding:0;
-  font-family: 'League Gothic';
-  text-decoration: none;
-}
-
-.bg {
-  left:0;
-  position:absolute;
-  top:0;
-  width:100%;
-  z-index:0;
-}
-
-.links {
-
-	background-color: white;
-	float:right;
-  	font-size:23px;
-  	left:0;
-  	padding:20px 0;
-  	position:relative;
-  	text-align:center;
-  	top:200px;
-  	width: 190px;
-  	height: 0.1px;
-  	z-index:6000; 
-
-}
-
-.local_wave {
-	background-image: url("../custom_img/transpBlack.png");
-	color: white;
-	top:200px;
-}
-
-.circle {
-	background-image: url("../custom_img/transpBlack.png");
-}
-*/
-
-/* from stylesheet.css file */
-
 /* Regular */
 @font-face {
     font-family: 'League Gothic';
@@ -108,55 +62,6 @@
     font-weight: normal;
     font-style: italic;
 }
-
-/* from style.css */
-/*
-* {
-	font-family:"League Gothic";
-	text-align:center;
-	background-image: url("../../custom_img/bg.png");
-	text-decoration: none;
-}
-
-#header {
-	font-size:24px;
-	text-align:center;
-	opacity: 0.7;	
-	}
-
-.top_nav {
-
-background-image:url("http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png");	
-font-size: 28px;
-
-}
-
-p.info {
-	word-wrap:break-word;	
-	overflow:hidden;
-	font-family: "Helvetica Neue Light", sans-serif;
-	font-size: 12px;
-
-}
-.ride_wave a{
-	text-decoration:none;
-	font-size:14px;
-	text-align:center;
-	color:gray;
-}
-
-
-
-.pageContent { width: 400px; }
-	
-	
-.accordion { 
-	list-style-type: none; 
-	margin: 0 0 0px; 
-	padding-right: 40px;
-	padding-left: 20px;
-}
-	 */
 
    * {
   margin:0;
@@ -560,9 +465,234 @@ margin-top: 20px;
   color: black;
 }
 
+/*CIRCLES STYLES */
+
+#topImage{
+  background-image: url("/assets/wavy.jpg");
+}
+
+#nameInfo{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+  position: relative;
+  top: 100px !important;
+  opacity: 0.8;
+}
+
+#grey{
+  background-color: #E0E0E0;
+}
+
+.name{
+  color:white;
+  font-family: 'League Gothic';
+  font-size: 19pt;
+  position: relative;
+  left: 5px;
+  top: 3px;
+}
+
+#subhead{
+  color:grey;
+  font-family: Helvetica;
+  position: relative;
+  left: 5px;
+  top: -2px;
+  font-size: 10pt;
+}
+
+.circleHeader{
+  color:black;
+  opacity: 0.6;
+  font-family: 'League Gothic';
+  font-size: 25pt;
+  position: relative;
+  left: 5px;
+  top: 6px;
+}
+
+.allCircles{
+ margin-left: 5px;
+}
+
+#grey ul li {
+padding: 5px 5px 0px 5px;
+background-color: rgba(255, 255, 255, 1);
+display:inline-block;
+margin-top: 5px;
+position: relative;
+margin-left: 2px;
+      
+
+} 
+
+#grey ul li img {
+
+height: 105px;
+top: 0px;
+position:relative;
+}
+
+.grayBox{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+ position: absolute;
+z-index: 1;
+top: 78px;
+width: 88.5%;
+left: 1px;
+margin-left: 5px;
+font-family: 'League Gothic';
+color: rgba(255,255,255,0.5);
+padding: 4px;
+font-size: 15pt;
+
+}
+
+.grayBox1{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+ position: absolute;
+z-index: 1;
+top: 78px;
+width: 85.5%;
+left: 1px;
+margin-left: 5px;
+font-family: 'League Gothic';
+color: rgba(255,255,255,0.5);
+padding: 4px;
+font-size: 15pt;
+
+}
+
+.grayBox2{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+ position: absolute;
+z-index: 1;
+top: 78px;
+width: 83.9%;
+left: 1px;
+margin-left: 5px;
+font-family: 'League Gothic';
+color: rgba(255,255,255,0.5);
+padding: 4px;
+font-size: 15pt;
+
+}
+
+.grayBox3{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+ position: absolute;
+z-index: 1;
+top: 78px;
+width: 89.5%;
+left: 1px;
+margin-left: 5px;
+font-family: 'League Gothic';
+color: rgba(255,255,255,0.5);
+padding: 4px;
+font-size: 15pt;
+
+}
+
+#radio{
+font-family: 'League Gothic';
+color:white;
+position: relative;
+top:15px;
+margin-left: 40px;
+}
+
+
+
+.nav1{
+position: absolute;
+background-color: blue;
+padding-right: 20px;
+top: 385px;
+left:68px
+}
+
+.nav2 {
+position: absolute;
+background-color: blue;
+padding-right: 20px;
+top: 385px;
+left: 190px;
+}
+
+a {
+color: white;
+font-size: 22px;
+padding-top: 8px;
+text-decoration: none;
+}
+
+/*LIST OF FRIENDS */
+#nameInfo{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+  position: relative;
+  top: 0px;
+  opacity: 0.8;
+}
+
+.listOFFriends{
+  list-style-type: none;
+}
+
+.friend{
+font-family: Helvetica;
+font-weight: 130;
+opacity: 0.6;
+}
+
+#seeCircles{
+  font-family: 'League Gothic';
+  font-size: 11pt;
+  color:white;
+  width:400px;
+  top: 260px;
+  left:-200px;
+  position: relative;
+}
 
 
 
 
-	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
