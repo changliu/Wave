@@ -98,10 +98,16 @@ function animate(lastTick, timeLeft, closingId, openingId)
           error('not supported');
         }
 
+        var startlat;
+        var startlong;
+
         function success(position) {
           console.log("The user's position is at");
           debug = position;
           console.log(debug);
+
+          startlat = position.coords["latitude"];
+          startlong = position.coords["longitude"];
 
           var query = "https://api.foursquare.com/v2/venues/explore";   
           params = new Object();
@@ -127,10 +133,12 @@ function animate(lastTick, timeLeft, closingId, openingId)
 
               var venue_obj = items[j];
               var venue = venue_obj.venue;
-              console.log(venue); 
+              console.log(venue);
 
               var venue_name = venue.name;
               var venue_id = venue.id;
+              var venue_lat = venue.location["lat"];
+              var venue_long = venue.location["lng"];
               console.log(venue_name);
               console.log(venue.contact);
               var venue_contact = venue.contact["formattedPhone"];
@@ -143,12 +151,17 @@ function animate(lastTick, timeLeft, closingId, openingId)
 
               // display venue on page
               var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'>" + venue_name + "</div></div>";
-              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<br/><a class = 'navi' href='loc_wave_list/wave_detail?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + "'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
+              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<br/><a class = 'navi' href='loc_wave_list/wave_detail?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + "'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + generateHref(startlat, startlong, venue_lat, venue_long) + "'>RIDE THIS WAVE</a></div>";
 
               $(".AccordionContainer").append(title);
               $(".AccordionContainer").append(content);
             }
           }
+        }
+
+        function generateHref(startlat, startlong, endlat, endlong){
+          var str = "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong;
+          return str;
         }
 
         function error(msg){
