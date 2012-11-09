@@ -12,6 +12,8 @@
  				<li class = "friend">Jay</li>
 			</ul>
            </div>
+           <span class = "backtocircles"><a class="yes" href="/soc_wave_list/callback">BACK</a></span>
+           <span class = "goinghomenow"><a class="yes" href="/">GO HOME</a></span>
 		</div>
 	</div>
 </div>
@@ -58,7 +60,7 @@
 	    function fs_query_success(data){
 	    		var friends = data.response.friends.items;
 		    	console.log(friends);
-		    	for(var i = 0 ; i < friends.length; i++) {
+		    	for(var i = 0 ; i < 30; i++) {
 		    		var friend_fn = friends[i].firstName;
 		    		var friend_ln = friends[i].lastName;
 		    		console.log(friend_fn, friend_ln);
@@ -68,9 +70,6 @@
 
 	          }
 	        }      
-
-
-
 
 
 			function jsonpCallback(data) {

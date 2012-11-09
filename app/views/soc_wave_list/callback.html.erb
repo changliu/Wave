@@ -5,12 +5,12 @@
 		<div id = "main">
 			<div id = "topImage" style="height: 150px; width: 100%;">
 				<div id = "nameInfo" style="height: 50px; width: 100%">
-					<p class = "name"> Sheta Chatterjee </p>
+					<p class = "name"> Waves with Friends </p>
 					<p id = "subhead">Stanford, CA </p>
 
 				</div>
 			</div>
-			<div id = "grey" style="height: 310px; width: 100%;">
+			<div id = "grey" style="height: 320px; width: 100%;">
 				<p class = "circleHeader">MY GROUPS</h1>
 			    <ul class="allCircles">
 					<li class="circle">
@@ -39,6 +39,7 @@
 						</a>
 					</li>
 				</ul>
+				<span class = "seeya"><a class="yes" href="/soc_mood_picker">BACK</a></span>
 			</div>
 		</div>
 	</div>
@@ -60,7 +61,7 @@ function doStuff() {
 		    		q = q.split('=')[1];
 		    		access_token = q;
 		    		}
-		    		
+		    	
 	         $("a.changed").attr("href", "friendList#access_token=" + access_token);
 	         document.getElementsByClassName('changed').href = sHref;
 

@@ -7,6 +7,7 @@ Wave::Application.routes.draw do
   match '/soc_wave_list/login' => 'soc_wave_list#login'
   match '/soc_wave_list/callback' => 'soc_wave_list#callback'
   match '/soc_wave_list/friendList' => 'soc_wave_list#friendList'
+  
 
   match '/loc_wave_list' => 'loc_wave_list#index'
   match '/loc_wave_list/wave_detail' => 'loc_wave_list#wave_detail'

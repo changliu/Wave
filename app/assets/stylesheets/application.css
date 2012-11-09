@@ -718,3 +718,44 @@ border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px,1px,1px,1px);
 }
+
+
+.seeya {
+position: absolute;
+background-color: rgba(0, 0, 0, 0.68);
+font-family: 'League Gothic';
+padding-right: 60px;
+padding-left: 50px;
+
+top: 440px;
+left: 90px;
+}
+
+.yes{
+color:rgba(255, 255, 255, 0.7);
+font-size: 13pt;
+}
+
+.backtocircles{
+  position:absolute;
+  background-color: rgba(0, 0, 0, 0.68);
+font-family: 'League Gothic';
+padding-right: 30px;
+padding-left: 30px;
+top: 320px;
+left:3px;
+
+}
+
+.goinghomenow{
+  position:absolute;
+  background-color: rgba(0, 0, 0, 0.68);
+font-family: 'League Gothic';
+padding-right: 30px;
+padding-left: 30px;
+top: 320px;
+left:100px;
+
+}
+
+
