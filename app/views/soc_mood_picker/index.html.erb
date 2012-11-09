@@ -5,19 +5,19 @@
   <h1 id = "where"> I'M FEELING . . .</h1>
   
 
-  <form>
+  <form name="mood_form">
     <div id="radio">
-      <input type="radio" id="radio2" name="radio" /><label class="list"  for="radio2">ADVENTUROUS</label>
-      <input type="radio" id="radio3" name="radio" /><label class="list"  for="radio3">ROMANTIC</label>
-      <input type="radio" id="radio4" name="radio" /><label class="list" for="radio4">ARTSY</label>
-      <input type="radio" id="radio5" name="radio" /><label class="list" for="radio5">ON A BUDGET</label>
-      <input type="radio" id="radio6" name="radio" /><label class="list" for="radio6">STYLISH</label>
-      <input type="radio" id="radio7" name="radio" /><label class="list" for="radio7">RELAXED</label>
+      <input type="radio" id="radio2" name="radio" onclick="get_radio_value()" value="adventurous"/><label class="list"  for="radio2">ADVENTUROUS</label>
+      <input type="radio" id="radio3" name="radio" onclick="get_radio_value()" value="romantic"/><label class="list"  for="radio3">ROMANTIC</label>
+      <input type="radio" id="radio4" name="radio" onclick="get_radio_value()" value="artsy"/><label class="list" for="radio4">ARTSY</label>
+      <input type="radio" id="radio5" name="radio" onclick="get_radio_value()" value="budget"/><label class="list" for="radio5">ON A BUDGET</label>
+      <input type="radio" id="radio6" name="radio" onclick="get_radio_value()" value="stylish"/><label class="list" for="radio6">STYLISH</label>
+      <input type="radio" id="radio7" name="radio" onclick="get_radio_value()" value="relaxed"/><label class="list" for="radio7">RELAXED</label>
       
     </div>
   </form>
 
-<span class="nav1"><a href="..">BACK</a></span><span class="nav2"><a href="../soc_wave_list">NEXT</a></span> 
+<span class="nav1"><a href="..">BACK</a></span><span class="nav2"><a class="next">NEXT</a></span> 
 
 <div id = "seeCircles"><a href="../soc_wave_list/login">SEE CIRCLES</a></div>
 
@@ -35,6 +35,30 @@
   $(function() {
         $( "#radio" ).buttonset();
     });
+  </script>
+
+  <script>
+    // return the value of the radio button that is checked
+    // return an empty string if none are checked, or
+    // there are no radio buttons
+    function get_radio_value() {
+      var mood_tag = "food";
+      var next = "<a href='../soc_wave_list?mood_tag=" + mood_tag + "'>NEXT</a>";
+      var radio_length = document.mood_form.radio.length;
+      for(var i = 0; i < radio_length; i++) {
+        if(document.mood_form.radio[i].checked){
+          mood_tag = document.mood_form.radio[i].value;
+          var href_mood = "../soc_wave_list?mood_tag=" + mood_tag;
+          console.log(href_mood);
+
+          $(".next").attr('href', href_mood);
+  
+        }
+      }
+
+    }
+
+
   </script>
 
 

@@ -1,35 +1,49 @@
-<script type="text/javascript">
-$(document).ready(function () {
-  alert("document ready!");
-  initialize();
+  <h2 id = "ohyeah">YOU'RE RIDING A WAVE   </h2>	
+	<p class = "noti" style = "margin-left:auto; margin-right:auto"> see the map below to start heading over</p>
+	<p id = "or" style = "margin-left:auto; margin-right:auto"> OR</p>
+	<div id = "notibutton" style = "margin-left:auto; margin-right:auto"><a href="#"><p> get notified when you are closer </p></a></div>
+	<div id = "again" style = "margin-left:auto; margin-right:auto">
+	<a  class = "n" href="../loc_wave_list">Back to Waves</a>
+    <a  class = "n" href="..">Go Home</a>
+	</div>
+	<div id="googlemap">
+	</div>
 
-  var a=document.getElementsByTagName("a");
-  for(var i=0;i<a.length;i++){
-      a[i].onclick=function(){
-          window.location=this.getAttribute("href");
-          return false
-      }
+<script>
+var vars = [], hash;
+  var q = document.URL.split('?')[1];
+  if(q != undefined){
+    q = q.split('&');
+    for(var i = 0; i < q.length; i++){
+      hash = q[i].split('=');
+      vars.push(hash[1]);
+      vars[hash[0]] = hash[1];
+    }
   }
+
+  var startlat = vars['startlat'];
+  var startlong = vars['startlong'];
+  var endlat = vars['endlat'];
+  var endlong = vars['endlong'];
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
+var start = new google.maps.LatLng(startlat, startlong);
+var end = new google.maps.LatLng(endlat, endlong);
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
-  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
     zoom:7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: chicago
+    center: start
   }
-  map = new google.maps.Map(document.getElementById("mapp"), mapOptions);
+  map = new google.maps.Map(document.getElementById("googlemap"), mapOptions);
   directionsDisplay.setMap(map);
 }
 
 function calcRoute() {
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
   var request = {
     origin:start,
     destination:end,
@@ -41,29 +55,26 @@ function calcRoute() {
     }
   });
 }
-}
+
+  initialize();
+  calcRoute();
+
+  var a=document.getElementsByTagName("a");
+  for(var i=0;i<a.length;i++){
+      a[i].onclick=function(){
+          window.location=this.getAttribute("href");
+          return false
+      }
+  }
  </script>
-	
+  
   <style>
     body{
-    	background-image:url("six.jpeg");
- 		width:100%;
-  		left:0;
-  		position:absolute;
-  		top:0;
-  		height: 460px;
+      background-image:url("six.jpeg");
+      width:100%;
+      left:0;
+      position:absolute;
+      top:0;
+      height: 460px;
     }
   </style>
-
-  <h2 id = "ohyeah">YOU'RE RIDING A WAVE   </h2>	
-	<p class = "noti" style = "margin-left:auto; margin-right:auto"> see the map below to start heading over</p>
-	<p id = "or" style = "margin-left:auto; margin-right:auto"> OR</p>
-	<div id = "notibutton" style = "margin-left:auto; margin-right:auto"><a href="#"><p> get notified when you are closer </p></a></div>
-	<div id = "again" style = "margin-left:auto; margin-right:auto">
-	<a  class = "n" href="../loc_wave_list">Back to Waves</a>
-    <a  class = "n" href="..">Go Home</a>
-	</div>
-	<div id="mapp">
-	</div>
-  <!--<iframe  id="hellow" width='330' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sheta.map-pb93ptgv.html#14/37.42546842031163/-122.16552257537838'></iframe>-->
-  

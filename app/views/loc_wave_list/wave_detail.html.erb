@@ -52,7 +52,10 @@
 	var contact = vars['contact'];
 	var category = vars['category'];
 	var icon = vars['icon'];
-	var name = vars['name'];
+	var startlat = vars['startlat'];
+  var startlong = vars['startlong'];
+  var endlat = vars['endlat'];
+  var endlong = vars['endlong'];
 
 	if (contact == "undefined"){
 		$("#text").html(unescape(name) + "<br/>" + unescape(category));
@@ -60,7 +63,7 @@
 		$("#text").html(unescape(name) + "<br/>" + unescape(category) + "<br/>" + unescape(contact));
 	}
 
-  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&category=" + category + "&icon=" + icon + "&name=" + name + "'>RIDE THIS WAVE</a></div>";
+  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&category=" + category + "&icon=" + icon + "&name=" + name + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a></div>";
   $("#getout").append(ride_btn);
 /*
 	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   

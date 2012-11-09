@@ -1,37 +1,30 @@
-	<div data-role = "content">
- 		<div class="pitch">
-			<h2>THANKS FOR RIDING A WAVE</h2>
-			<h3> YOU ARE NOW PART OF SOMETHING BIG...</h3>
-	 	</div>
-
-	 	<script type="text/javascript">
-	 	$(".pitch").css("color", "grey").css("font-family", "League Gothic")
-	 				.css("font-size", "20px");
-	 	</script>
-
-	 	<div class="pitch">
-		    <p>
-		    	AREN'T YOU EXCITED TO SHARE THIS WAVE WITH YOUR FRIENDS ONCE YOU GET THERE?
-		    </p>
-		 </div>	
- 
-
-		
-
-		 <div class="links" style="width:40px">
-		 	<a href="/"> HOME </a>
-		 </div>
 
 
-		  <div class="links" style="width:130px" style="margin-top:20px">
-		 	<a href="/"> REMIND ME TO SHARE THIS WAVE WITH OTHERS </a>
-		 </div>
-		<script type="text/javascript">
-	 		$(".links").css("color", "grey").css("font-family", "League Gothic")
-	 				.css("font-size", "20px").css("text-decoration", "none")
-	 				.css("background-color", "gray");
-	 	</script>
+	<script type="text/javascript">
+$(document).ready(function () {
+  alert("document ready!");
+  }
+  </script>
+	
+  <style>
+    body{
+    	background-image:url("six.jpeg");
+ 		width:100%;
+  		left:0;
+  		position:absolute;
+  		top:0;
+  		height: 460px;
+    }
+  </style>
 
-
-
+  <h2 id = "ohyeah">YOURE RIDING A WAVE   </h2>	
+	<p class = "noti" style = "margin-left:auto; margin-right:auto"> see the map below to start heading over</p>
+	<p id = "or" style = "margin-left:auto; margin-right:auto"> OR</p>
+	<div id = "notibutton" style = "margin-left:auto; margin-right:auto"><a href="#"><p> get notified when you are closer </p></a></div>
+	<div id = "again" style = "margin-left:auto; margin-right:auto">
+	<a  class = "n" href="../loc_wave_list">Back to Waves</a>
+    <a  class = "n" href="..">Go Home</a>
 	</div>
+	<div id="mapp">
+	</div>
+	 <iframe  id="hellow" width='330' height='200' frameBorder='0' src='http://a.tiles.mapbox.com/v3/sheta.map-pb93ptgv.html#14/37.42546842031163/-122.16552257537838'></iframe>
