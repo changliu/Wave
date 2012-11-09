@@ -15,26 +15,26 @@
 			    <ul class="allCircles">
 					<li class="circle">
 						<span class = "grayBox">HIKING</span>
-						<a href="soc_wave_list/friendList.html">
+						<a class="changed" href="friendList">
 							<img src="/assets/hiking.jpg" />
 						</a>
 
 					</li>
 					<li class="circle">
 						<span class = "grayBox1">FOOD</span>
-						<a href="http://dribbble.com/shots/272575-Tutorials-wip-">
+						<a class="changed" href="friendList">
 							<img src="/assets/food.jpg" />
 						</a>
 					</li>
 					<li class="circle">
 						<span class = "grayBox2">ARTSY</span>
-						<a href="http://dribbble.com/shots/138484-Symplas-website">
+						<a class="changed" href="friendList">
 							<img src="/assets/artsy.jpg" />
 						</a>
 					</li>
 					<li class="circle">
 						<span class = "grayBox3">SMART</span>
-						<a href="http://dribbble.com/shots/188524-Event-Planning">
+						<a class="changed" href="friendList">
 							<img src="/assets/book.jpg" />
 						</a>
 					</li>
@@ -50,6 +50,31 @@ for(var i=0;i<a.length;i++){
         return false
     }
 }
+
+function doStuff() {
+
+		  	// get access_token to use for authenticated api calls
+			var access_token;
+			  	var q = document.URL.split('#')[1];
+			  	if(q != undefined){
+		    		q = q.split('=')[1];
+		    		access_token = q;
+		    		}
+		    		
+	         $("a.changed").attr("href", "friendList#access_token=" + access_token);
+	         document.getElementsByClassName('changed').href = sHref;
+
+		  	
+
+
+
+
+
+
+		}
+
+doStuff();
+
 </script>
 </body>
 </html>

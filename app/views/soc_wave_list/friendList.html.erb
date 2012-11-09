@@ -1,0 +1,87 @@
+
+	<div id = "container">
+		<div id = "main">
+		  <div id = "grey" style="height: 510px; width: 100%;">
+		  	<div id = "nameInfoo" style="height: 50px; width: 100%">
+		  		<p class = "name"> FRIENDS IN GROUP </p>
+		  	</div>
+		  	<div id = "thecoolestlist">
+		  	<ul class= "listOFFriends">
+  				<li class = "friend">Sheta</li>
+  				<li class = "friend">Chang</li>
+ 				<li class = "friend">Jay</li>
+			</ul>
+           </div>
+		</div>
+	</div>
+</div>
+	
+	<script>
+	//get all friends!!!
+
+		
+    	$(document).ready(function () {
+
+		  	// get access_token to use for authenticated api calls
+			var access_token;
+			  	var q = document.URL.split('#')[1];
+			  	if(q != undefined){
+		    		q = q.split('=')[1];
+		    		access_token = q;
+		    		}
+
+		  	if (navigator.geolocation) {
+          		navigator.geolocation.getCurrentPosition(success, error);
+		        } else {console.debug('not supported');
+        	}
+
+	    function error() {
+	        console.debug("user geolocation is not supported")}
+	    function success(position) {
+	        //get all friends!!!
+
+			var friend_list = "https://api.foursquare.com/v2/users/self/friends";
+
+			var params = new Object();
+			params.oauth_token = access_token;
+			$.ajax({
+	            url: friend_list,
+	            type: 'get',
+	            dataType: 'jsonp',
+	            data:params,
+	            success: fs_query_success
+	          });
+	      }
+
+	     // IF SUCCESS, PARSE JSON DATA AND DISPLAY THE VENUE LIST INTO ACCORDION
+	     // returned data might have changed, need to fix bugs on wave icon
+	    function fs_query_success(data){
+	    		var friends = data.response.friends.items;
+		    	console.log(friends);
+		    	for(var i = 0 ; i < friends.length; i++) {
+		    		var friend_fn = friends[i].firstName;
+		    		var friend_ln = friends[i].lastName;
+		    		console.log(friend_fn, friend_ln);
+	            
+	            var title = "<li class = 'friend'> "+ friend_fn + "</li>";
+	            $(".listOFFriends").append(title);
+
+	          }
+	        }      
+
+
+
+
+
+			function jsonpCallback(data) {
+				console.log(data);
+			}
+
+
+
+			var listed = "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
+
+		});
+
+
+	</script>

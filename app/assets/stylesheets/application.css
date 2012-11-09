@@ -478,7 +478,18 @@ margin-top: 20px;
   opacity: 0.8;
 }
 
+#nameInfoo{
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+  position: relative;
+  top: 0px;
+  opacity: 0.8;
+}
+
 #grey{
+  background-color: #E0E0E0;
+}
+
+#greyy{
   background-color: #E0E0E0;
 }
 
