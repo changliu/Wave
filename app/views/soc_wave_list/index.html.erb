@@ -49,13 +49,37 @@
       }
       function success(position) {
 
+        var vars = [], hash;
+        var mood = "food";
+        var foursquare_mood = "food";
+        var q = document.URL.split('?')[1];
+        if(q != undefined){
+          mood=q.split('=')[1];
+          console.log(mood);
+        }
+
+        //map mood to foursquare api section
+        if(mood == "adventurous")
+          foursquare_mood = "outdoors";
+        else if(mood == "artsy")
+          foursquare_mood = "arts";
+        else if(mood == "romantic" )
+          foursquare_mood = "sights";
+        else if(mood == "stylish")
+          foursquare_mood = "shops";
+        else if(mood == "budget")
+          foursquare_mood = "specials";
+
+
+
+
 
 
         var query = "https://api.foursquare.com/v2/venues/explore";   
         params = new Object();
         params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
         params.limit = 10;
-        params.section = "arts";
+        params.section = foursquare_mood;
         params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
         $.ajax({
           url: query,
