@@ -596,24 +596,33 @@ font-size: 15pt;
 font-family: 'League Gothic';
 color:white;
 position: relative;
+font-size: 16pt;
 top:15px;
 margin-left: 40px;
+text-align:center;
+line-height: 2em;
+padding-top: 5px;
 }
 
 
 
 .nav1{
 position: absolute;
-background-color: blue;
+background-color: #191970;
+font-family: 'League Gothic';
 padding-right: 20px;
 top: 385px;
+padding-left: 20px;
 left:68px
 }
 
 .nav2 {
 position: absolute;
-background-color: blue;
+background-color: #191970;
+font-family: 'League Gothic';
 padding-right: 20px;
+padding-left: 20px;
+
 top: 385px;
 left: 190px;
 }
@@ -648,12 +657,56 @@ opacity: 0.6;
   font-size: 11pt;
   color:white;
   width:400px;
-  top: 260px;
+  top: 320px;
   left:-200px;
   position: relative;
 }
 
 
+
+
+/* jQuery styles */
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { 
+border: 0px !important;
+ background: url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png) !important; 
+ font-weight: normal !important; 
+ color: white !important; 
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { 
+  border: 0px !important; 
+  background: #191970 !important; 
+  font-weight: normal !important; 
+  color: white !important; 
+}
+
+.ui-buttonset .ui-button {
+  margin-left: 3px !important;
+  margin-right: 0px !important;
+  width: 230px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+-moz-border-radius-topleft: 0px/*{cornerRadius}*/!important;
+-webkit-border-top-left-radius: 0px/*{cornerRadius}*/!important;
+-khtml-border-top-left-radius: 0px/*{cornerRadius}*/!important;
+border-top-left-radius: 0px/*{cornerRadius}*/!important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+-moz-border-radius-bottomleft: 0px/*{cornerRadius}*/!important;
+-webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
+-khtml-border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
+border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
+}
+
+.ui-helper-hidden-accessible{
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+}
 
 
 
