@@ -6,14 +6,14 @@
   <h1 id = "where"> I'M FEELING . . .</h1>
   
 
-  <form>
+  <form name="mood_form">
     <div id="radio">
-      <input type="radio" id="radio2" name="radio" /><label class="list"  for="radio2">ADVENTUROUS</label>
-      <input type="radio" id="radio3" name="radio" /><label class="list"  for="radio3">ROMANTIC</label>
-      <input type="radio" id="radio4" name="radio" /><label class="list" for="radio4">ARTSY</label>
-      <input type="radio" id="radio5" name="radio" /><label class="list" for="radio5">ON A BUDGET</label>
-      <input type="radio" id="radio6" name="radio" /><label class="list" for="radio6">STYLISH</label>
-      <input type="radio" id="radio7" name="radio" /><label class="list" for="radio7">RELAXED</label>
+      <input type="radio" id="radio2" name="radio" onclick="get_radio_value()"/><label class="list"  for="radio2">ADVENTUROUS</label>
+      <input type="radio" id="radio3" name="radio" onclick="get_radio_value()"/><label class="list"  for="radio3">ROMANTIC</label>
+      <input type="radio" id="radio4" name="radio" onclick="get_radio_value()"/><label class="list" for="radio4">ARTSY</label>
+      <input type="radio" id="radio5" name="radio" onclick="get_radio_value()"/><label class="list" for="radio5">ON A BUDGET</label>
+      <input type="radio" id="radio6" name="radio" onclick="get_radio_value()"/><label class="list" for="radio6">STYLISH</label>
+      <input type="radio" id="radio7" name="radio" onclick="get_radio_value()"/><label class="list" for="radio7">RELAXED</label>
       
     </div>
   </form>
@@ -32,6 +32,24 @@
           return false
       }
   }
+  </script>
+
+  <script>
+    // return the value of the radio button that is checked
+    // return an empty string if none are checked, or
+    // there are no radio buttons
+    function get_radio_value() {
+      var radio_length = document.mood_form.radio.length;
+      for(var i = 0; i < radio_length; i++) {
+        if(document.mood_form.radio[i].checked){
+          var mood_tag = document.mood_form.radio[i].id;
+          console.log(mood_tag);
+        }
+      }
+
+    }
+
+
   </script>
 
 
