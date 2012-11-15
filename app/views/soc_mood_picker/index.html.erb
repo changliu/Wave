@@ -1,5 +1,5 @@
-<% if !session[:user].blank? %>
-  <p>user logged in!</p>
+<% if !@access_token.blank? %>
+  <p>user logged in: <%= @access_token %></p>
 <% else %>
   <p>user not logged in</p>
 <% end %>
