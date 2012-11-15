@@ -1,5 +1,8 @@
-
-
+<% if !session[:user].blank? %>
+  <p>user logged in!</p>
+<% else %>
+  <p>user not logged in</p>
+<% end %>
 
 <img class="bg" src="/assets/nine.jpg">
   <h1 id = "where"> I'M FEELING . . .</h1>
