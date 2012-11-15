@@ -8,6 +8,6 @@ class UserController < ApplicationController
 		else
 			ret = "NOK"
 		end
-		ret
+		render ret
 	end
 end

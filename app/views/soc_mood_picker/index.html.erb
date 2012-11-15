@@ -76,7 +76,7 @@
             }
     
     console.log(access_token);
-    $.post('/user/login', {token: access_token}, function(data){
+    $.get('/user/login', {token: access_token}, function(data){
       alert("data loaded:" + data);
     });
     $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
