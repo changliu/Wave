@@ -15,6 +15,8 @@ Wave::Application.routes.draw do
 
   match '/soc_mood_picker' => 'soc_mood_picker#index'
 
+  match '/user/login' => 'user#login'
+
   match '/friend_circle' => 'friend_circle#index'
   match '/friend_circle/circles' => 'friend_circle#circles'
   match '/friend_circle/waves' => 'friend_circle#waves'

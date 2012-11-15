@@ -76,7 +76,10 @@
             }
     
     console.log(access_token);
-     $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
+    $.post('/user/login', {token: access_token}, function(data){
+      alert("data loaded:" + data);
+    });
+    $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
    });
   </script>
 
