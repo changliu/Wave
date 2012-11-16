@@ -75,10 +75,12 @@
             access_token = q;
             }
     
-    console.log(access_token);
     $.get('/user/login', {token: access_token}, function(data){
-      console.log("data loaded:" + data);
+      if(data == "OK"){
+        $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
+      } else {
+        alert("invalid login request");
+      }
     });
-    $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
    });
   </script>
