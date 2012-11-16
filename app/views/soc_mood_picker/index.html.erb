@@ -73,7 +73,7 @@
             access_token = q;
             }
 
-    console.log(access_token);
+    console.log("my access token: " + access_token);
     
     $.get('/user/login', {token: access_token}, function(data){
       console.log("|" + data + "|");
