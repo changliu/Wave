@@ -1,7 +1,4 @@
-* {
-  margin:0;
-  padding:0;
-}
+/*
 
 .bg {
   left:0;
@@ -112,7 +109,7 @@ h1{
   color: white;
   margin-left: 80px;
   margin-top: 40px;
-  /*float:left;*/
+ 
   font-family: 'League Gothic';
 }
 
@@ -208,7 +205,7 @@ h1{
    float:left;
 }
 
-/* ACCORDION */
+
 .AccordionTitle, .AccordionContent, .AccordionContainer
 {
   position:relative;
@@ -247,7 +244,7 @@ h1{
 .AccordionContainer
 {
 
-/*margin-top: 145px;*/
+
 height: 319px;
  
 }
@@ -277,7 +274,7 @@ height: 319px;
 
 }
 
-/* MORE INFO STYLE  */
+
  
 #details{
   color:black;
@@ -331,7 +328,7 @@ h2{
   margin-left: 20px;
 }
 
-/* DONE PAGE */
+
 
 
 
@@ -407,6 +404,5 @@ text-align: center;
   margin-right:auto;
   width:330px;
   height:200px;
-}
-
+}*/
 
