@@ -1,6 +1,7 @@
 class UserController < ApplicationController
 	def login
 		@access_token = params[:token]
+		render :text => @access_token
 		if @access_token.blank?
 			render :text => "NOK"
 		end
