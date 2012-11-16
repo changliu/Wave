@@ -41,10 +41,16 @@
           console.debug('not supported');
         }
 
+        var startlat;
+        var startlong;
+
       function error() {
         console.debug("user geolocation is not supported")
       }
       function success(position) {
+
+        startlat = position.coords["latitude"];
+        startlong = position.coords["longitude"];
 
         var vars = [], hash;
         var mood = "food";
@@ -52,7 +58,7 @@
         var q = document.URL.split('?')[1];
         if(q != undefined){
           mood=q.split('=')[1];
-          console.log(mood);
+          // console.log(mood);
         }
 
         //map mood to foursquare api section
@@ -87,12 +93,14 @@
       }
 
       function fs_query_success(data){
+        console.log("success"); 
         var groups = data.response.groups;
         for(var i=0;i<groups.length;i++){
           var items = groups[i].items;  
           for(var j=0;j<items.length;j++){
             var venue_obj = items[j];
             var venue = venue_obj.venue;
+            console.log(venue);
 
             //get the tips to display on the accordion
             var tips_obj = venue_obj.tips;
@@ -108,12 +116,21 @@
             var venue_name = venue.name;
             var venue_id = venue.id;
             var venue_contact = venue.contact["formattedPhone"];
+
+            //get venue address
+            var loc = venue.location;
+            var address = loc.address;
+            var city = loc.city;
+            var state = loc.state;
+            var zipcode = loc.postalCode;
+            var venue_lat = loc["lat"];
+            var venue_long = loc["lng"];
+
             
 
             //mapping venue distance in miles, popularity onto wave icons
-            var distance = venue.location["distance"]/1600;
+            var distance = loc["distance"]/1600;
             var checkins = venue.stats.checkinsCount;
-
 
 
             //map the distance icon
@@ -144,8 +161,8 @@
             var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
           
             // pass on venue name, distance, id, token to show me more
-            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> " + tips_user + " said: "+  tips.text  + "<br/><br/> Rating: " + rating.toFixed(1) + "/10 <br/><br/><a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&token=" + token_str + "&name=" + venue_name +"'>SHOW ME MORE</a><a class='navi' href='soc_wave_list/wave_final?id=" + venue_id + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
-          
+            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> " + tips_user + " said: "+  tips.text  + "<br/><br/> Rating: " + rating.toFixed(1) + "/10 <br/><br/><a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&token=" + token_str + "&name=" + venue_name + "&contact=" + venue_contact + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode+ generateHref(startlat, startlong, venue_lat, venue_long) + "'>SHOW ME MORE</a><a class='navi' href='soc_wave_list/wave_final?id=" + venue_id + "&name=" + venue_name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode+ generateHref(startlat, startlong, venue_lat, venue_long) +"'>RIDE THIS WAVE</a></div>";
+            console.log(content);
 
             $(".AccordionContainer").append(title);
             $(".AccordionContainer").append(content);
@@ -183,6 +200,11 @@ function runAccordion(index)
   
   openAccordion = nID;
 }
+
+function generateHref(startlat, startlong, endlat, endlong){
+          var str = "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong;
+          return str;
+        }
 
 function animate(lastTick, timeLeft, closingId, openingId)
 {  
