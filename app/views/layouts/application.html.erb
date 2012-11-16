@@ -14,7 +14,12 @@
   <%= yield :pagejs %>
 </head>
 <body>
- 
+  <ul id="navigationTop">
+  <li><a href="/">HOME</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/soc_wave_list/callback">GROUPS</a></li>
+</ul>
 <%= yield %>
 
 </body>
