@@ -1,16 +1,15 @@
 class UserController < ApplicationController
 	def login
 		@access_token = params[:token]
-		render :text => @access_token
 		if @access_token.blank?
-			render :text => "NOK"
+			render :status => 500
 		end
 		@user = User.login(access_token)
 		if !@user.blank?
 			session[:user] = @user
-			render :text => "OK"
+			render :status => 200
 		else
-			render :text => "NOK"
+			render :status => 500
 		end
 	end
 end
