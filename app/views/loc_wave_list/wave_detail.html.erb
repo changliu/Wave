@@ -1,28 +1,16 @@
 
-
-
-	<!--JAY H. PATEL LOOK OVER HERE AND DO NOT IGNORE THIS!!!!!!!
-	This page is displayed for EACH wave location when the user
-	wants to know more. See that yummy picture of that sandwich? 
-	THAT is where we put the single picture of the venue. Cool sauce?
-	With the text, fill it in with other interesting API info like
-	categories, contact, and some basic info. This should elaborate
-	on the information provided in the accordion menu.
--->
-
-
-
-
 <div id="bgimg">
 </div>
-<img class="bg" src="/assets/ikes.jpeg"/>
+<!-- <img class="bg" src="/assets/ikes.jpeg"/> -->
 <div id = "moreinf">
-<h2> WAVE DETAILS </h2>
+<h2 id = "header" > </h2>
+<!-- <h2> WAVE DETAILS </h2> -->
 <p id="text">
 
 </p>
 
 <div id = "getout">
+    <!-- <a class='na' href='/loc_wave_list/wave_final'>RIDE THIS WAVE</a> -->
 <a  class = "na" href="../loc_wave_list">Back</a>
 </div>
 
@@ -46,45 +34,81 @@
     }
 	}
 
-  console.log(q);
 
+  // get from url
 	var id = vars['id'];
 	var contact = vars['contact'];
 	var category = vars['category'];
-	var icon = vars['icon'];
+	// var icon = vars['icon'];
 	var startlat = vars['startlat'];
   var startlong = vars['startlong'];
   var endlat = vars['endlat'];
   var endlong = vars['endlong'];
+  var name = vars['name'];
+  var address = vars['addr'];
+  var city= vars['city'];
+  var state = vars['state'];
+  var zipcode = vars['zipcode'];
 
-	if (contact == "undefined"){
-		$("#text").html(unescape(name) + "<br/>" + unescape(category));
-	} else {
-		$("#text").html(unescape(name) + "<br/>" + unescape(category) + "<br/>" + unescape(contact));
-	}
+  //display title
+  $("#header").append("<h2 style='font-size:30px'>" + unescape(name) + "</h2>");
 
-  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&category=" + category + "&icon=" + icon + "&name=" + name + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a></div>";
+  //create link to wave final page
+  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&category=" + category + "&name=" + name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a>";
+  console.log(ride_btn);
   $("#getout").append(ride_btn);
-/*
-	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos";   
-  params = new Object();
-  params.group = "venue";
-  params.limit = 1;
-  params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
-  $.ajax({
-    url: query,
-    dataType: 'json',
-    data: params,
-    success: fs_query_success
-  });
 
-  function fs_query_success(data){
-  	var photo = data.response.photos;
-  	console.log(photo);
-  	var url = photo.prefix + "530x224" + photo.suffix;
 
-  	var img = "<img src='" + url + "' class='bg'/>";
-  	$("#bgimg").html(img);
-  }
-  */
+  //query to download all photos links of a venue
+  var query = "https://api.foursquare.com/v2/venues/" + id + "/photos?";
+  var query2 = "https://api.foursquare.com/v2/venues/" + id + "/tips?sort=popular"   
+      params = new Object();
+        params.group = "venue"
+        params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+        $.ajax({
+            url: query,
+            dataType: 'json',
+            data: params,
+            success: fs_photo_query_success
+        });
+
+
+        $.ajax({
+            url: query2,
+            dataType: 'json',
+            data: params,
+            success: fs_tips_query_success
+        });
+
+        //photo callback function, display photo as background, display gradient photo if venue photo doesn't exist
+   function fs_photo_query_success(data) {
+      if(data.response.photos.items.length == 0) {
+          var bg_img = "<img class='bg' src='/assets/gradient.jpg'/>";
+      }
+      else {
+        var photo = data.response.photos.items[0].sizes.items[1].url;
+        var bg_img = "<img class='bg' src=" + photo  + " />";
+      }
+        $("#bgimg").append(bg_img);
+
+    }
+
+    //tip callback func, display max of 3 tips from a venues
+    function fs_tips_query_success(data) {
+      var tips = data.response.tips.items;
+      var i = 0;
+      //if a venue has more than one tip, then discard the tip shown
+      //in wave list sreen and get some new tips!
+      if(tips.length>1) {i = 1;}
+      for( i ; i < Math.min(4, tips.length); i++) {
+        var tip = tips[i];
+        var text = tip.text;
+        var user = tip.user.firstName;
+        $("#text").append("<p> " + user + " said: " + text + " <br/><br/></p>");
+      }
+
+
+
+    }
+
  </script>

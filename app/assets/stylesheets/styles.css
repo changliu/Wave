@@ -53,6 +53,22 @@
   font-family: 'League Gothic';
 }
 
+#seefriendslink {
+  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
+  float:right;
+  color:white;
+  font-size:21px;
+  left:0;
+  padding:20px 0;
+  position:relative;
+  text-align:center;
+  top:241px;
+  width: 190px;
+  height: 15px;
+  z-index:6000;
+  font-family: 'League Gothic';
+}
+
 #wavelink {
  background-image:url(http://css-tricks.com/examples/ImageToBackgroundImage/images/transpBlack.png);
   float:right;
@@ -80,6 +96,11 @@
   margin-top: -5px;
 }
 
+.enterthree{
+  margin-left: -70px;
+  margin-top: -5px;
+}
+
 .enterone{
   margin-left: -90px;
   margin-top: -10px;
@@ -91,6 +112,11 @@
 }
 
 #friendslink a{
+  text-decoration: none !important;
+  color: white;
+}
+
+#seefriendslink a{
   text-decoration: none !important;
   color: white;
 }
@@ -364,7 +390,7 @@ h2{
   width: 200px;
   background-color: #4981CE;
   text-align: center;
-  font-size: 11pt;
+  font-size: 9pt;
 
   font-family: helvetica;
   margin-left: 65px;

@@ -8,12 +8,13 @@ Wave::Application.routes.draw do
   match '/soc_wave_list/callback' => 'soc_wave_list#callback'
   match '/soc_wave_list/friendList' => 'soc_wave_list#friendList'
   
-
   match '/loc_wave_list' => 'loc_wave_list#index'
   match '/loc_wave_list/wave_detail' => 'loc_wave_list#wave_detail'
   match '/loc_wave_list/wave_final' => 'loc_wave_list#wave_final'
 
   match '/soc_mood_picker' => 'soc_mood_picker#index'
+
+  match '/user/login' => 'user#login'
 
   match '/friend_circle' => 'friend_circle#index'
   match '/friend_circle/circles' => 'friend_circle#circles'
