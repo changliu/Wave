@@ -73,13 +73,14 @@
   position:absolute;
   top:0;
   width:100%;
-  z-index:0;
+  z-index:-1;
   height: 460px;
+
 }
 
 .bgi {
   left:0;
-  position:absolute;
+  position:absolute;  
   top:0;
   z-index:0;
 }
@@ -606,6 +607,7 @@ font-size: 15pt;
 #radio{
 font-family: 'League Gothic';
 color:white;
+margin-top: -40px;
 position: relative;
 font-size: 16pt;
 top:15px;
@@ -721,13 +723,12 @@ border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
 
 
 .seeya {
-position: absolute;
 background-color: rgba(0, 0, 0, 0.68);
 font-family: 'League Gothic';
 padding-right: 60px;
 padding-left: 50px;
-
-top: 440px;
+position: relative;
+top: 10px;
 left: 90px;
 }
 
@@ -739,23 +740,56 @@ font-size: 13pt;
 .backtocircles{
   position:absolute;
   background-color: rgba(0, 0, 0, 0.68);
-font-family: 'League Gothic';
-padding-right: 30px;
-padding-left: 30px;
-top: 320px;
-left:3px;
+  font-family: 'League Gothic';
+  padding-right: 30px;
+  padding-left: 30px;
+  top: 320px;
+  left:3px;
 
 }
 
 .goinghomenow{
   position:absolute;
   background-color: rgba(0, 0, 0, 0.68);
-font-family: 'League Gothic';
-padding-right: 30px;
-padding-left: 30px;
-top: 320px;
-left:100px;
+  font-family: 'League Gothic';
+  padding-right: 30px;
+  padding-left: 30px;
+  top: 320px;
+  left:100px;
 
 }
+
+/*Navigation */
+#navigationTop{
+z-index: 5;
+ padding-left: 34px;
+
+height:30px;
+background-color: rgba(0, 0, 0, 0.45); 
+background-repeat: repeat-x;
+
+
+}
+
+#navigationTop > li{
+  float:left;
+  padding: 0px 10px 0px 6px;
+ padding-top: 7px;
+  display: block;
+  position:relative;
+  margin: 0;
+  font-size:3px;
+
+}
+
+
+#navigationTop a{
+  
+  font-size:15px;
+
+  color: rgba(255, 255, 255, 0.38);
+  font-family: 'League Gothic';
+}
+
 
 
