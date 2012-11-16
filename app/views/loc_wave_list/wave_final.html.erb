@@ -32,9 +32,13 @@ var vars = [], hash;
   var city= unescape(vars['city']);
   var state = vars['state'];
   var zipcode = vars['zipcode'];
-  var loc = "<p>" + address + "<br>" + city + ", " + state + " " + zipcode + "</p>";
-  $('#addr').append(loc);
-  $("#name").append(name);
+  if(address != "undefined"){
+    var loc = "<br/><p>" + address + "<br>" + city + ", " + state + " " + zipcode + "</p>";
+  } else {
+    var loc = "<br/><p>" + city + ", " + state + " " + zipcode + "</p>";
+  }
+  $('#addr').html(loc);
+  $("#name").html(name);
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
