@@ -1,5 +1,8 @@
-
-
+<% if session[:user].blank? %>
+  <script type="text/javascript">
+    window.location.href="/";
+  </script>
+<% end %>
 
   <style>
     
