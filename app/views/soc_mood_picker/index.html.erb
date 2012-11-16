@@ -1,11 +1,6 @@
-
-
-<% if !@access_token.blank? %>
-  <p>user logged in: <%= @access_token %></p>
-<% else %>
-  <p>user not logged in</p>
+<% content_for :pagejs do %>
+  <script src="http://cdn.optimizely.com/js/141715440.js"></script>
 <% end %>
-
 
 <img class="bg" src="/assets/nine.jpg">
 
