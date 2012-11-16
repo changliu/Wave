@@ -1,5 +1,7 @@
-  <h2 id = "ohyeah">YOU'RE RIDING A WAVE   </h2>	
-	<p class = "noti" style = "margin-left:auto; margin-right:auto"> see the map below to start heading over</p>
+  <h2 id = "ohyeah">YOU'RE RIDING A WAVE   </h2>
+  <p id = "name" class="noti" style = "margin-left:auto; margin-right:auto; font-size:25px;"></p>	
+  <p id = "addr" class="noti" style = "margin-left:auto; margin-right:auto"><br><br></p>
+	<p class = "noti" style = "margin-left:auto; margin-right:auto"><br>see the map below to start heading over<br></p>
 	<p id = "or" style = "margin-left:auto; margin-right:auto"> OR</p>
 	<div id = "notibutton" style = "margin-left:auto; margin-right:auto"><a href="#"><p> get notified when you are closer </p></a></div>
 	<div id = "again" style = "margin-left:auto; margin-right:auto">
@@ -25,6 +27,14 @@ var vars = [], hash;
   var startlong = vars['startlong'];
   var endlat = vars['endlat'];
   var endlong = vars['endlong'];
+  var name = unescape(vars['name']);
+  var address = unescape(vars['addr']);
+  var city= unescape(vars['city']);
+  var state = vars['state'];
+  var zipcode = vars['zipcode'];
+  var loc = "<p>" + address + "<br>" + city + ", " + state + " " + zipcode + "</p>";
+  $('#addr').append(loc);
+  $("#name").append(name);
 
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();

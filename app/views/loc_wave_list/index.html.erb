@@ -92,6 +92,7 @@ function animate(lastTick, timeLeft, closingId, openingId)
 <script type="text/javascript">			
 		$(document).ready(function () {
 			$('ul.accordion').accordion();
+      oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(success, error);
@@ -103,19 +104,19 @@ function animate(lastTick, timeLeft, closingId, openingId)
         var startlong;
 
         function success(position) {
-          console.log("The user's position is at");
+          // console.l og("The user's position is at");
           debug = position;
-          console.log(debug);
+          // console.log(debug);
 
           startlat = position.coords["latitude"];
           startlong = position.coords["longitude"];
 
-          var query = "https://api.foursquare.com/v2/venues/explore";   
+          var query = "https://api.foursquare.com/v2/venues/search";   
           params = new Object();
           params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
           params.limit = 5;
-          params.section = "arts";
-          params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+          // params.section = "arts";
+          params.oauth_token = oauth_token;
           $.ajax({
             url: query,
             dataType: 'json',
@@ -124,40 +125,95 @@ function animate(lastTick, timeLeft, closingId, openingId)
           });
         }
 
+        //parse the data if a list of venues are returned
         function fs_query_success(data){
           var groups = data.response.groups;
-          console.log(groups);
           for(var i=0;i<groups.length;i++){
             var items = groups[i].items;
+            console.log(items);
             
             for(var j=0;j<items.length;j++){
-
-              var venue_obj = items[j];
-              var venue = venue_obj.venue;
+              var venue = items[j];
               console.log(venue);
-
               var venue_name = venue.name;
               var venue_id = venue.id;
-              var venue_lat = venue.location["lat"];
-              var venue_long = venue.location["lng"];
-              console.log(venue_name);
-              console.log(venue.contact);
+              
               var venue_contact = venue.contact["formattedPhone"];
               var venue_category = venue.categories[0].name;
               var venue_category_icon = venue.categories[0].icon;
-              var distance = venue.location["distance"];
-              console.log(venue_name);
+              var checkins = venue.stats.checkinsCount;
 
-              // also display the number of people at that location right now
+              var loc = venue.location;
+              var address = loc.address;
+              var city = loc.city;
+              var state = loc.state;
+              var zipcode = loc.postalCode;
+              var venue_lat = loc["lat"];
+              var venue_long = loc["lng"];
+              var distance = loc["distance"]/1600;
 
-              // display venue on page
-              var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'>" + venue_name + "</div></div>";
-              var content = "<div id='Accordion" + j + "Content' class='AccordionContent'>This is " + venue_name + ". " + distance + " meters away from here.<br/><a class = 'navi' href='loc_wave_list/wave_detail?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + generateHref(startlat, startlong, venue_lat, venue_long) + "'>SHOW ME MORE</a><a class='navi' href='loc_wave_list/wave_final?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category + "&icon=" + venue_category_icon + "&name=" + venue_name + generateHref(startlat, startlong, venue_lat, venue_long) + "'>RIDE THIS WAVE</a></div>";
 
+                //map the distance icon
+              var dist_icon_path = "";
+              if (distance < 1.0) {
+                dist_icon_path = "/assets/wave_icon/walk.svg";
+              }
+              else if (distance > 2.0) {
+                dist_icon_path = "/assets/wave_icon/car.svg";
+              }
+              else {dist_icon_path = "/assets/wave_icon/bike.svg";}
+
+              //map using checkin amount
+              var checkin_icon_path = "";
+              if (checkins > 5000) {
+                checkin_icon_path = "/assets/wave_icon/ship.svg";
+              }
+              else if (checkins < 1000) {
+                checkin_icon_path = "assets/wave_icon/swim.svg";
+              }
+              else {checkin_icon_path = "assets/wave_icon/surf.svg";}
+
+
+              
+              var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
+
+              //create place holder for venue tips, and links
+              var content_holder = "<div id='Accordion" + j + "Content' class='AccordionContent'> </div>"
+              
+              var links = "<a class = 'navi' href='loc_wave_list/wave_detail?id=" + venue_id + "&contact=" + venue_contact + "&category=" + venue_category  + "&name=" + venue_name +  "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode + generateHref(startlat, startlong, venue_lat, venue_long) + "'>SHOW ME MORE</a><a class='navi'   href='loc_wave_list/wave_final?id=" + venue_id + "&contact=" + venue_contact + "&name=" + venue_name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode+ generateHref(startlat, startlong, venue_lat, venue_long) + "'>RIDE THIS WAVE</a>";             
+              
               $(".AccordionContainer").append(title);
-              $(".AccordionContainer").append(content);
+              $(".AccordionContainer").append(content_holder);
+              $("#Accordion" + j + "Content").append(links);
+
+
+              //another api call to retrieve tips for this venue and display tip in the detail div
+              tip_request(venue_id, j);
+
+
             }
           }
+        }
+
+        //return the most popular tip from requested venue with its index in the list
+        function tip_request(venue_id, index) {
+          //get tips from a venue
+              var tips_query = "https://api.foursquare.com/v2/venues/" + venue_id + "/tips?sort=popular&oauth_token=" + oauth_token;
+              tip = "";
+              $.ajax({url:tips_query,
+                      dataType:'json',
+                      success:tips_success
+                      })
+              //call back funciton
+              function tips_success (data){
+                //get the most popular tip
+                var tip_val = data.response.tips.items[0].text;
+                //put the tip in accordion content
+                var content = "<p class='tip'><br>" + tip_val + "</p>";    
+                $("#Accordion" + index +"Content").append(content);
+              }
+              
+
         }
 
         function generateHref(startlat, startlong, endlat, endlong){
