@@ -1,11 +1,6 @@
-
-
-<% if !@access_token.blank? %>
-  <p>user logged in: <%= @access_token %></p>
-<% else %>
-  <p>user not logged in</p>
+<% content_for :pagejs do %>
+  <script src="http://cdn.optimizely.com/js/141715440.js"></script>
 <% end %>
-
 
 <img class="bg" src="/assets/nine.jpg">
 
@@ -77,12 +72,16 @@
             q = q.split('=')[1];
             access_token = q;
             }
+
+    console.log("my access token: " + access_token);
     
     $.get('/user/login', {token: access_token}, function(data){
       if(data == "OK"){
+        console.log("Successfully logged in user!");
         $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
-      } else {
-        alert("invalid login request");
+      } else if(data == "NOK"){
+        console.log("Error logging in user!");
+        window.location.href="/";
       }
     });
    });
