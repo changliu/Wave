@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :access_token, :name
-  has_and_belongs_to_many :circles
+  has_many :circle_users
+  has_many :circles, :through => :circle_users
 
   def self.login(token)
   	return nil if token.blank?
