@@ -58,18 +58,18 @@
 	     // IF SUCCESS, PARSE JSON DATA AND DISPLAY THE VENUE LIST INTO ACCORDION
 	     // returned data might have changed, need to fix bugs on wave icon
 	    function fs_query_success(data){
-	    		var friends = data.response.friends.items;
-		    	console.log(friends);
-		    	for(var i = 0 ; i < 30; i++) {
-		    		var friend_fn = friends[i].firstName;
-		    		var friend_ln = friends[i].lastName;
-		    		console.log(friend_fn, friend_ln);
-	            
-	            var title = "<li class = 'friend'> "+ friend_fn + "</li>";
-	            $(".listOFFriends").append(title);
+    		var friends = data.response.friends.items;
+	    	console.log(friends);
+	    	for(var i = 0 ; i < 30; i++) {
+	    		var friend_fn = friends[i].firstName;
+	    		var friend_ln = friends[i].lastName;
+	    		console.log(friend_fn, friend_ln);
+            
+            var title = "<li class = 'friend'> "+ friend_fn + "</li>";
+            $(".listOFFriends").append(title);
 
-	          }
-	        }      
+          }
+	    }      
 
 
 			function jsonpCallback(data) {
