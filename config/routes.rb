@@ -19,8 +19,10 @@ Wave::Application.routes.draw do
   match '/friend_circle' => 'friend_circle#index'
   match '/friend_circle/circles' => 'friend_circle#circles'
   match '/friend_circle/waves' => 'friend_circle#waves'
-  match '/friend_circle/delete' => 'friend_circle#delete'  
+  match '/friend_circle/delete' => 'friend_circle#delete'
 
+  match '/circle/:action' => "circle#%{action}"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

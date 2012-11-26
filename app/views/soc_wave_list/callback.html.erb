@@ -13,13 +13,18 @@
 			<div id = "grey" style="height: 320px; width: 100%;">
 				<p class = "circleHeader">MY GROUPS</h1>
 			    <ul class="allCircles">
+			    	<% num = 0 %>
 			    	<% for circle in user.circles do %>
 			    		<li class="circle">
 								<span class = "grayBox"><%= circle.name.upcase %></span>
 								<a class="changed" href="friendList">
 								<img src="/assets/hiking.jpg" />
 								</a>
+								<input type="hidden" id="circle_<%= num %>" value="<%= circle.id %>"></input>
+								<a id="del_<%= num %>" href="#">Delete Circle</a>
+								<a id="mod_<%= num %>" href="#">Modify Circle</a>
 							</li>
+							<% num++ %>
 			    	<% end %>
 			    	<!--
 					<li class="circle">
@@ -74,6 +79,28 @@ function doStuff() {
   $("a.changed").attr("href", "friendList#access_token=" + access_token);
   //$("a.yes").attr("href", "/soc_mood_picker#access_token=" + access_token);
   document.getElementsByClassName('changed').href = sHref;
+
+  $("[id^=del]").click(function(){
+  	var selfid = this.id;
+  	var num = selfid.split("_")[1];
+  	var selector = "#circle_" + num;
+  	var val = $(selector).val();
+		$.get('/circle/delete', {id: val}, function(data){
+			if(data == "OK"){
+				console.log("circle successfully deleted!");
+			} else {
+				console.log("error deleting circle!");
+			}
+		});
+	});
+
+	$("[id^=mod]").click(function(){
+  	var selfid = this.id;
+  	var num = selfid.split("_")[1];
+  	var selector = "#circle_" + num;
+  	var val = $(selector).val();
+  	window.location.href = "/circle/modify?id=" + val;
+	});
 }
 
 doStuff();

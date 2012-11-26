@@ -6,7 +6,8 @@ class Circle < ActiveRecord::Base
   has_many :users, :through => :circle_users
 
   def get_users
-		user = session[:user]
+  	#session[:user_id] = 2
+		user = User.find(2)
 		all_users = self.users
 		all_users.delete_if{|u| u.id.equal? user.id}
 		return all_users
