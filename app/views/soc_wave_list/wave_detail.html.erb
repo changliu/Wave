@@ -53,8 +53,11 @@
   var city= vars['city'];
   var state = vars['state'];
   var zipcode = vars['zipcode'];
+  var access_token = vars['access_token'];
+  var mood = vars['mood_tag'];
 
-
+  var href_back = "../soc_wave_list?mood_tag=" +mood + "&access_token=" + access_token;
+  $(".na").attr('href', href_back);
 	$("#header").append("<h2 style='font-size:30px'>" + unescape(name) + "</h2>");
 	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
 
@@ -67,7 +70,7 @@
  	var query2 = "https://api.foursquare.com/v2/venues/" + id + "/tips?sort=popular"   
  	    params = new Object();
         params.group = "venue"
-        params.oauth_token = token;
+        params.oauth_token = access_token;
         $.ajax({
           	url: query,
             dataType: 'json',
