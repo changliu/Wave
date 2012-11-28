@@ -1,0 +1,64 @@
+Name: <input type="text" name="circlename" id="circlename" value="<%= @c.name %>"></input><br/><br/>
+Users (<a href="#" id="adduser">Add User</a>):
+<ul>
+	<% num = 0 %>
+	<% for user in @c.get_users %>
+		<li id="u_<%= num %>">
+			<%= user.name %> &nbsp;
+			<input type="hidden" value="<%= user.id %>" id="uid_<%= num %>"></input>
+			<a href="#" id="del_<%= num %>">Remove</a>
+		</li>
+	<% num += 1 %>
+	<% end %>
+</ul>
+<input type="button" id="savecircle" name="savecircle" value="Save"></input>
+<div id="all_users"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#savecircle").click(function(){
+		$.get('/circle/rename', {new_name: $("#circlename").val(), id: <%= @c.id %>}, function(data){
+			if(data == "OK"){
+				console.log("circle successfully renamed!");
+			} else {
+				console.log("error renaming circle!");
+			}
+		});
+	});
+
+	$("[id^=del]").click(function(){
+		var selfid = this.id;
+		var num = selfid.split("_")[1];
+		var selector = "#uid_" + num;
+		var uid = $(selector).val();
+		$.get('/circle/remove_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
+			if(data == "OK"){
+				console.log("user successfully removed from circle!");
+				$("li_" + num).hide();
+			} else {
+				console.log("error removing user from circle!");
+			}
+		});
+	});
+
+	$("#adduser").click(function(){
+		$.get('/circle/get_all_users', function(data){
+			// data should be array of all users
+			alert(data.length);
+		});
+
+		// display this list in the all_users div above using checkboxes, and let user select one
+
+		// on click save, go through all selected users and make api call to add the user to the circle
+		/*$.get('/circle/add_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
+			if(data == "OK"){
+				console.log("user successfully removed from circle!");
+				$("li_" + num).hide();
+			} else {
+				console.log("error removing user from circle!");
+			}
+		});*/
+	});
+});
+</script>
