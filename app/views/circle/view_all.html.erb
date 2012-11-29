@@ -1,5 +1,5 @@
 <% 
-session[:user_id] = User.first.id
+#session[:user_id] = User.first.id
 user = User.find(session[:user_id]) %>
 <html>
 <body>
@@ -16,16 +16,16 @@ user = User.find(session[:user_id]) %>
 				<p class = "circleHeader">MY GROUPS (<a href="#" id="newcircle">New Group</a>)</h1>
 			    <ul class="allCircles">
 			    	<% num = 0 %>
-			    	<% for circle in user.circles %>
+			    	<% for circle in user.get_circles %>
 			    		<li class="circle">
 								<span class = "grayBox"><%= circle.name.upcase %>&nbsp;&nbsp;<a id="del_<%= num %>" href="#">Delete</a>&nbsp;
 								<a id="mod_<%= num %>" href="#">Modify</a></span>
-								<a class="changed" href="friendList">
 								<img src="/assets/hiking.jpg" />
 								</a>
 								<input type="hidden" id="circle_<%= num %>" value="<%= circle.id %>"></input>
 							</li>
 							<% num += 1 %>
+							<br/>
 			    	<% end %>
 			    	<!--
 					<li class="circle">
@@ -55,7 +55,7 @@ user = User.find(session[:user_id]) %>
 					</li>
 				-->
 				</ul>
-				<span class = "seeya"><a class="yes" href="/">BACK</a></span>
+				<span class="seeya"><a class="yes" href="/">BACK</a></span>
 			</div>
 		</div>
 	</div>
@@ -75,9 +75,11 @@ user = User.find(session[:user_id]) %>
   		var num = selfid.split("_")[1];
   		var selector = "#circle_" + num;
   		var val = $(selector).val();
-			$.get('/circle/delete', {id: val}, function(data){
+  		console.log(val);
+  		$.get('/circle/delete', {id: parseInt(val)}, function(data){
 				if(data == "OK"){
 					console.log("circle successfully deleted!");
+					window.location = "/circle/view_all";
 				} else {
 					console.log("error deleting circle!");
 				}
@@ -95,17 +97,6 @@ user = User.find(session[:user_id]) %>
 		$("#newcircle").click(function(){
 			window.location.href = "/circle/new";
 		});
-
-		// get access_token to use for authenticated api calls
-		var access_token;
-		var q = document.URL.split('#')[1];
-		if(q != undefined){
-			q = q.split('=')[1];
-			access_token = q;
-		}
-  	$("a.changed").attr("href", "friendList#access_token=" + access_token);
-  	//$("a.yes").attr("href", "/soc_mood_picker#access_token=" + access_token);
-  	document.getElementsByClassName('changed').href = sHref;
 	});
 </script>
 </body>

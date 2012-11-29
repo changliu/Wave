@@ -3,15 +3,23 @@ class User < ActiveRecord::Base
   has_many :circle_users
   has_many :circles, :through => :circle_users, :dependent => :destroy
 
-  @@num = 0
-  def self.login(token)
+  def self.login(token, name)
   	return nil if token.blank?
-  	user = User.where("access_token = ?", token).first
-		if user.blank?
-      username = "User" + @@num.to_s
-			user = User.create!(:access_token => token, :name => username)
-      @@num += 1
+    return nil if name.blank?
+  	user = User.where("name = ?", name).first
+		if user.blank? # user never entered
+			user = User.create!(:access_token => token, :name => name)
+    else # user already entered into database by another friend
+      user.access_token = token
+      user.save!
 		end
 		return user
+  end
+
+  def get_circles
+    mycircles = self.circles.select do |c|
+      c.creator.id.equal? self.id
+    end
+    return mycircles
   end
 end

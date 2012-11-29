@@ -11,14 +11,21 @@ class CircleController < ApplicationController
 	def modify
 		user = User.find(session[:user_id])
 		id = params[:id].to_i
+		@token = params[:token]
 		@c = user.circles.find(id)
 	end
 
 	def delete
-		user = User.find(session[:user_id])
-		circle_id = params[:circle_id]
-		user.circles.find(circle_id).destroy
-		return "OK"
+		#user = User.find(session[:user_id])
+		circle_id = params[:id]
+		c = Circle.find(circle_id)
+		c.circle_users.each do |cu|
+			cu.destroy
+		end
+		Circle.find(circle_id).destroy
+		#user.circles.where(:circle_id => circle_id)[0].destroy
+		#user.save!
+		render :text => "OK"
 	end
 
 	def rename
@@ -28,7 +35,7 @@ class CircleController < ApplicationController
 		c = user.circles.find(circle_id)
 		c.name = new_name
 		c.save!
-		return "OK"
+		render :text => "OK"
 	end
 
 	def add_user
@@ -36,10 +43,22 @@ class CircleController < ApplicationController
 		circle_id = params[:circle_id]
 		user_id = params[:user_id]
 		c = user.circles.find(circle_id)
-		c.users << User.find(user_id)
+		new_user = User.find(user_id)
+		c.users << new_user
 		c.num_users += 1
 		c.save!
-		return "OK"
+		render :text => "OK"
+	end
+
+	def user_exists_in_circle
+		circle_id = params[:circle_id].to_i
+		user_id = params[:user_id].to_i
+		entries = CircleUser.where(:user_id => user_id, :circle_id => circle_id).count
+		if entries > 0
+			render :text => "OK"
+		else
+			render :text => "NOK"
+		end
 	end
 
 	def remove_user

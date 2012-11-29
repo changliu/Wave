@@ -41,7 +41,7 @@
     mood_tag = "food";
 
     // get access_token to use for authenticated api calls
-    /*  var access_token;
+      var access_token;
           var q = document.URL.split('#')[1];
           if(q != undefined){
             q = q.split('=')[1];
@@ -49,17 +49,37 @@
             }
 
     console.log("my access token: " + access_token);
-    */
-    var access_token = "token1";
-    $.get('/user/login', {token: access_token}, function(data){
-      if(data == "OK"){
-        console.log("Successfully logged in user!");
-        $(".circles").attr("href", "/circle/view_all#access_token=" + access_token);
-      } else if(data == "NOK"){
-        console.log("Error logging in user!");
-        //window.location.href="/";
+    
+    //var access_token = "OXZVVTCMITWBF15RO5ORSDYG2KARG4BMN0UMUVSUG4TMOTH1";
+
+    var url = "https://api.foursquare.com/v2/users/self"; // TODO: replace this with token from session
+
+      var params = new Object();
+      params.oauth_token = access_token; // TODO: replace this with token from session
+      $.ajax({
+              url: url,
+              type: 'get',
+              dataType: 'jsonp',
+              data:params,
+              success: fs_query_success
+            });
+
+      function fs_query_success(data){
+        var userobj = data.response.user;
+        var first_name = userobj.firstName;
+        var last_name = userobj.lastName;
+        var full_name = first_name + " " + last_name;
+
+        $.get('/user/login', {token: access_token, full_name: full_name}, function(data){
+          if(data == "OK"){
+            console.log("Successfully logged in user!");
+            $(".circles").attr("href", "/circle/view_all#access_token=" + access_token);
+          } else if(data == "NOK"){
+            console.log("Error logging in user!");
+            //window.location.href="/";
+          }
+        });
       }
-    });
    });
 
     // return the value of the radio button that is checked
