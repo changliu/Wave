@@ -15,6 +15,12 @@ class CircleController < ApplicationController
 		@c = user.circles.find(id)
 	end
 
+	def view
+		user = User.find(session[:user_id])
+		id = params[:id].to_i
+		@c = user.circles.find(id)
+	end
+
 	def delete
 		#user = User.find(session[:user_id])
 		circle_id = params[:id]
