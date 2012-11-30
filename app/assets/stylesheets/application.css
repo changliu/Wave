@@ -97,12 +97,10 @@
   position:relative;
   text-align:center;
   top:200px;
-  width: 190px;
+  width: 300px;
   height: 0.1px;
   z-index:6000; 
-  font-family: 'League Gothic'; 
-
-
+  font-family: 'League Gothic';
 }
 
 
@@ -626,7 +624,7 @@ font-family: 'League Gothic';
 padding-right: 20px;
 top: 385px;
 padding-left: 20px;
-left:68px
+left:100px
 }
 
 .nav2 {
@@ -637,7 +635,18 @@ padding-right: 20px;
 padding-left: 20px;
 
 top: 385px;
-left: 190px;
+left: 153px;
+}
+
+.nav3 {
+position: absolute;
+background-color: #191970;
+font-family: 'League Gothic';
+padding-right: 20px;
+padding-left: 20px;
+
+top: 420px;
+left: 68px;
 }
 
 a {

@@ -31,12 +31,10 @@
   position:relative;
   text-align:center;
   top:200px;
-  width: 190px;
+  width: 200px;
   height: 0.1px;
   z-index:6000; 
-  font-family: 'League Gothic'; 
-
-
+  font-family: 'League Gothic';
 }
 
 
@@ -105,7 +103,7 @@
 }
 
 .enterone{
-  margin-left: -90px;
+  margin-left: 0px;
   margin-top: -10px;
 }
 

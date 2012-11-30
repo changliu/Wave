@@ -130,19 +130,6 @@ $(document).ready(function(){
         }
         $("#all_users").append("</form>");
 	    }
-
-		// display this list in the all_users div above using checkboxes, and let user select one
-
-		// on click save, go through all selected users and make api call to add the user to the circle
-		/*$.get('/circle/add_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
-			if(data == "OK"){
-				console.log("user successfully removed from circle!");
-				$("li_" + num).hide();
-			} else {
-				console.log("error removing user from circle!");
-			}
-		});*/
-
 	});
 });
 </script>
