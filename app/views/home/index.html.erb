@@ -10,7 +10,7 @@
 	</div>
  -->
 
-    <div id ="heythere"><p class = "enterone">GET RECOMMENDATIONS FROM</p></div>	
+    <div id ="heythere"><a href="/home/tut"><p class = "enterone"> HEY THERE! </p></a></div>	
 	<!--<div id="friendslink"><a href="/soc_wave_list/login"><p class = "enter">RIDE A WAVE WITH FRIENDS</p></a></div>-->
 	<% if session[:user_id] == nil 
 		   moodurl = "/soc_wave_list/login"
@@ -18,8 +18,8 @@
 		 	 moodurl = "/soc_mood_picker"
 		 end
 		%>
-	<div id="friendslink"><a href="<%= moodurl %>"><p class = "enter">FRIENDS</p></a></div>
-	<div id="wavelink"><a href="/loc_wave_list"><p class = "entertwo">PEOPLE AROUND</p></a></div>
+	<div id="friendslink"><a href="<%= moodurl %>"><p class = "enter">RIDE A WAVE WITH FRIENDS</p></a></div>
+	<div id="wavelink"><a href="/loc_wave_list"><p class = "entertwo">RIDE A NEARBY WAVE</p></a></div>
 	<% if session[:user_id] == nil 
 		   groupsurl = "/soc_wave_list/login?dest=groups"
 		 else
@@ -27,7 +27,6 @@
 		 end
 		%>
 	<div id="seefriendslink"><a href="<%= groupsurl %>"><p class = "enterthree"> MODIFY GROUPS </p></a></div>
-
 
 		<!--
    		<div class="mood">
