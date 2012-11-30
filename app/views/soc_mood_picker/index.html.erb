@@ -76,7 +76,7 @@
             <% if session[:dest] == "groups" %>
                  var url = "/circle/view_all";
                  <% session[:dest] = "" %>
-                 window.location.href = url;
+                 window.location = url;
             <% end %>
 
             $(".circles").attr("href", "/circle/view_all");
