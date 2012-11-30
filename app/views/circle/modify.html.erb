@@ -34,6 +34,7 @@ $(document).ready(function(){
 			$.get('/circle/add_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
 				if(data == "OK"){
 					console.log("user " + uid + " successfully added to circle " + <%= @c.id %>);
+					window.location = "/circle/modify?id=<%= @c.id %>";
 				} else {
 					console.log("error adding user " + uid + " to circle " + <%= @c.id %>);
 				}
