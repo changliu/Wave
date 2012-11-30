@@ -45,6 +45,7 @@ $(document).ready(function(){
 			console.log("myform exists");
 			
 			$("#myform").children().each(function(){
+				console.log("hello");
 				var full_name = this.value;
 				if(this.checked == true){
 					console.log("processing checked checkbox");
@@ -61,7 +62,6 @@ $(document).ready(function(){
 									$.get('/circle/user_exists_in_circle', {user_id: data, circle_id: <%= @c.id %>}, function(data){
 										if(data == "NOK"){
 											add_user_to_circle(ret);
-											window.location = "/circle/modify?id=<%= @c.id %>";
 										} else {
 											console.log("user " + ret + " already exists in circle " + <%= @c.id %>);
 										}
@@ -74,7 +74,6 @@ $(document).ready(function(){
 							$.get('/circle/user_exists_in_circle', {user_id: data, circle_id: <%= @c.id %>}, function(data){
 								if(data == "NOK"){
 									add_user_to_circle(ret2);
-									window.location = "/circle/modify?id=<%= @c.id %>";
 								} else {
 									console.log("user " + ret2 + " already exists in circle " + <%= @c.id %>);
 								}
