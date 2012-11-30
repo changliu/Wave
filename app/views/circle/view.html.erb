@@ -12,4 +12,10 @@ Friends in this circle:<br/><br/>
 		No users in this circle yet.
 	<% end %>
 <br/><br/>
-<input type="button" id="backbtn" value="Back" href="/circle/view_all"/>
+<input type="button" id="backbtn" value="Back"/>
+
+<script type="text/javascript">
+	$("#backbtn").click(function(){
+		window.location = "/circle/view_all";
+	});
+</script>
