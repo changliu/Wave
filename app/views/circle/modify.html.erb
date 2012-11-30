@@ -81,6 +81,7 @@ $(document).ready(function(){
 					});
 				}
 			});
+			window.location = "/circle/view_all";
 		}
 	});
 
@@ -100,10 +101,10 @@ $(document).ready(function(){
 	});
 
 	$("#adduser").click(function(){
-		var friend_list = "https://api.foursquare.com/v2/users/self/friends?oauth_token=OXZVVTCMITWBF15RO5ORSDYG2KARG4BMN0UMUVSUG4TMOTH1"; // TODO: replace this with token from session
+		var friend_list = "https://api.foursquare.com/v2/users/self/friends?oauth_token=<%= User.find(session[:user_id]).access_token %>";
 
 			var params = new Object();
-			params.oauth_token = "OXZVVTCMITWBF15RO5ORSDYG2KARG4BMN0UMUVSUG4TMOTH1"; // TODO: replace this with token from session
+			params.oauth_token = "<%= User.find(session[:user_id]).access_token %>";
 			$.ajax({
 	            url: friend_list,
 	            type: 'get',
@@ -118,7 +119,7 @@ $(document).ready(function(){
 	    	//console.log(data);
     		var friends = data.response.friends.items;
 	    	//console.log(friends);
-	    	$("#all_users").append("Select the users that you want to add to this circle: ");
+	    	$("#all_users").append("Select which of your FourSquare friends you want to add to this circle: ");
 	    	$("#all_users").append("<form id='myform'>");
 	    	for(var i = 0; i < friends.length; i++) {
 	    		var friend_fn = friends[i].firstName;
