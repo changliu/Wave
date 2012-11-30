@@ -1,6 +1,6 @@
 Wave::Application.routes.draw do
   root :to => 'home#index'
-  match '/home/tut' => 'home#tut'
+
   match '/soc_wave_list' => 'soc_wave_list#index'
   match '/soc_wave_list/wave_detail' => 'soc_wave_list#wave_detail'
   match '/soc_wave_list/wave_final' => 'soc_wave_list#wave_final'
