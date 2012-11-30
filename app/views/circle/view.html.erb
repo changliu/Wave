@@ -1,0 +1,10 @@
+Friends in this circle:<br/><br/>
+<ul>
+	<% for user in @c.get_users(session[:user_id]) %>
+		<li>
+			<%= user.name %>
+		</li>
+	<% end %>
+</ul>
+<br/><br/>
+<input type="button" id="backbtn" href="/circle/view_all"/>
