@@ -12,7 +12,7 @@ user = User.find(session[:user_id]) %>
 				</div>
 			</div>
 			<div id = "grey" style="height: 320px; width: 100%;">
-				<p class = "circleHeader">MY GROUPS (<a href="#" id="newcircle">New Group</a>)</h1>
+				<p class = "circleHeader">MY GROUPS (<a href="/circle/new"><img src="/assets/blackplus.png" class="plusgroup"/></a>)</h1>
 			    <ul class="allCircles">
 			    	<% num = 0 %>
 			    	<% for circle in user.get_circles %>

@@ -1,19 +1,34 @@
-<input type="button" id="back_to_view_all" value="Back to View All"></input><br/><br/>
-Name: <input type="text" name="circlename" id="circlename" value="<%= @c.name %>"></input><br/><br/>
-Users (<a href="#" id="adduser" style="color:black;">Add User</a>):
-<ul>
-	<% num = 0 %>
-	<% for user in @c.get_users(session[:user_id]) %>
-		<li id="u_<%= num %>">
-			<%= user.name %> &nbsp;
-			<input type="hidden" value="<%= user.id %>" id="uid_<%= num %>"></input>
-			<a href="#" id="del_<%= num %>" style="color:black;">Remove</a>
-		</li>
-	<% num += 1 %>
-	<% end %>
-</ul>
-<div id="all_users"></div>
-<input type="button" id="savecircle" name="savecircle" value="Save"></input>
+	<div id = "container">
+		<div id = "main">
+			<div id = "topImage" style="height: 150px; width: 100%;">
+				<div id = "nameInfo" style="height: 50px; width: 100%">
+					<p class = "name"> Waves with Friends </p>
+					<p id = "subhead">Stanford, CA </p>
+				</div>
+			</div>
+			<div id = "grey2" style="height: 320px; width: 100%;">
+				<a class="nametxt">Name of group: </a><br/><input type="text" name="circlename" id="circlename" value="<%= @c.name %>"></input><br/><br/>
+				<a class="nametxt">Users (</a><img src="/assets/blackplus.png" href="#" class="plususer" id="adduser"/><a class="nametxtend">):</a>
+				<a>
+				<ul class="currusersul">
+					<% num = 0 %>
+					<% for user in @c.get_users(session[:user_id]) %>
+						<li id="u_<%= num %>">
+							<a class="subtext"><%= user.name %></a> &nbsp;
+							<input type="hidden" value="<%= user.id %>" id="uid_<%= num %>"></input>
+							<img src="/assets/blackminus.png" href="#" class="del_but" id="del_<%= num %>"/>
+						</li>
+						<% num += 1 %>
+					<% end %>
+				</ul>
+			</a>
+				<div id="all_users" class="subtext"></div>
+				
+				<span class="create"><a class="yes" id="savecircle" name="savecircle" href="#">SAVE</a></span><br/>
+				<span class="seeya"><a class="yes" href="/circle/view_all">BACK</a></span>
+			</div>
+		</div>
+	</div>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -120,14 +135,14 @@ $(document).ready(function(){
 	    	//console.log(data);
     		var friends = data.response.friends.items;
 	    	//console.log(friends);
-	    	$("#all_users").append("Select which of your FourSquare friends you want to add to this circle: ");
+	    	$("#all_users").append("<br/><a class='nametxt2'>Select friends: </a>");
 	    	$("#all_users").append("<form id='myform'>");
 	    	for(var i = 0; i < friends.length; i++) {
 	    		var friend_fn = friends[i].firstName;
 	    		var friend_ln = friends[i].lastName;
 	    		//console.log(friend_fn, friend_ln);
             
-          var title = "<input type='checkbox' name='" + friend_fn + "' value='" + friend_fn + " " + friend_ln + "'>&nbsp;" + friend_fn + " " + friend_ln;
+          var title = "<input type='checkbox' name='" + friend_fn + "' value='" + friend_fn + " " + friend_ln + "'>&nbsp;" + friend_fn + " " + friend_ln + "<br/>";
           $("#myform").append(title);
         }
         $("#all_users").append("</form>");
