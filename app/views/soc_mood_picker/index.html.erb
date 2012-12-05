@@ -1,16 +1,9 @@
 
-<head> </head>
 
-<% if !@access_token.blank? %>
-  <p>user logged in: <%= @access_token %></p>
-<% else %>
-  <p>user not logged in</p>
-=======
-<% content_for :pagejs do %>
-  <script src="http://cdn.optimizely.com/js/141715440.js"></script>
 
-<% end %>
 
+
+<% if session[:dest] != "groups" %>
 <img class="bg" src="/assets/nine.jpg">
 
   <h1 id = "where"> I'M FEELING . . .</h1>
@@ -26,11 +19,9 @@
     </div>
   </form>
 
-<span class="nav1"><a href="..">BACK</a></span><span class="nav2"><a class="next" href="#">NEXT</a></span> 
+<span class="nav1"><a href="/">BACK</a></span> 
 
-
-<div id = "seeCircles"><a class="circles">OR GO TO FRIEND LIST...</a></div>
-
+<% end %>
 
 
   <script>
@@ -53,42 +44,68 @@
   $(document).ready(function () {
     mood_tag = "food";
 
+  <% if session[:user_id] == nil %>
     // get access_token to use for authenticated api calls
-    // access_token;
-    var q = document.URL.split('#')[1];
-    if(q != undefined){
-      q = q.split('=')[1];
-      access_token = q;
-      }
+      var access_token;
+          var q = document.URL.split('#')[1];
+          if(q != undefined){
+            q = q.split('=')[1];
+            access_token = q;
+            }
 
     console.log("my access token: " + access_token);
     
-    $.get('/user/login', {token: access_token}, function(data){
-      if(data == "OK"){
-        console.log("Successfully logged in user!");
-        $(".circles").attr("href", "../soc_wave_list/callback#access_token=" + access_token);
-      } else if(data == "NOK"){
-        console.log("Error logging in user!");
-        //window.location.href="/";
+    //var access_token = "OXZVVTCMITWBF15RO5ORSDYG2KARG4BMN0UMUVSUG4TMOTH1";
+
+    var url = "https://api.foursquare.com/v2/users/self"; // TODO: replace this with token from session
+
+      var params = new Object();
+      params.oauth_token = access_token; // TODO: replace this with token from session
+      $.ajax({
+              url: url,
+              type: 'get',
+              dataType: 'jsonp',
+              data:params,
+              success: fs_query_success
+            });
+
+      function fs_query_success(data){
+        var userobj = data.response.user;
+        var first_name = userobj.firstName;
+        var last_name = userobj.lastName;
+        var full_name = first_name + " " + last_name;
+
+        $.get('/user/login', {token: access_token, full_name: full_name}, function(data){
+          if(data == "OK"){
+            console.log("Successfully logged in user!");
+            <% if session[:dest] == "groups" %>
+                 var url = "/circle/view_all";
+                 <% session[:dest] = "" %>
+                 window.location.href = url;
+            <% end %>
+
+            $(".circles").attr("href", "/circle/view_all");
+          } else if(data == "NOK"){
+            console.log("Error logging in user!");
+            //window.location.href="/";
+          }
+        });
       }
-    });
+  <% else %>
+    $(".circles").attr("href", "/circle/view_all");
+  <% end %>
    });
 
     // return the value of the radio button that is checked
     // return an empty string if none are checked, or
     // there are no radio buttons
     function get_radio_value() {
-      console.log(access_token);
       // var next = "<a href='../soc_wave_list?mood_tag=" + mood_tag + "'>NEXT</a>";
       var radio_length = document.mood_form.radio.length;
       for(var i = 0; i < radio_length; i++) {
         if(document.mood_form.radio[i].checked){
           mood_tag = document.mood_form.radio[i].value;
-          var href_mood = "../soc_wave_list?mood_tag=" + mood_tag +"&access_token=" +access_token;
-          console.log(href_mood);
-
-          $(".next").attr('href', href_mood);
-  
+          window.location = "/soc_wave_list?mood_tag=" + mood_tag;
         }
       }
 

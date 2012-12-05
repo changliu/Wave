@@ -5,10 +5,11 @@ class Circle < ActiveRecord::Base
   has_many :circle_users
   has_many :users, :through => :circle_users
 
-  def get_users
-		user = session[:user]
-		all_users = self.users
-		all_users.delete_if{|u| u.id.equal? user.id}
-		return all_users
+  def get_users(user_id)
+		user = User.find(user_id)
+		myusers = self.users.select do |u|
+      !(u.id.equal? user.id)
+    end
+		return myusers
 	end
 end

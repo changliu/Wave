@@ -1,0 +1,61 @@
+
+<img class="bg" src="/assets/four.jpeg"/>
+
+<div class="text-holder">
+	<h2 class='tut-title'>WELCOME TO WAVE</h2>
+	<div class='tut-detail-list'>
+		<div class='tut-detail'> <b>Wave</b> is an application that allows you to explore what's the biggest people <b>wave</b> around you depending on your mood.<br><br></div>
+		<div class='tut-detail'> <b>Ride A NearBy Wave</b> lets you explore what's closely around you <br><br></div>
+		<div class='tut-detail'> <b>Ride A Wave With Friends</b> lets you see what are the hottest waves from your customized friend circle<br><br></div>
+		<div class='tut-detail'> By <b>Ride A Wave</b>, you will become part of the people wave hitting the funest spot aroud you <br><br></div>
+		<div class='tut-detail'> Last but not least, <b> See Your Friends</b> allows you to set up customized friends group based on your interest, hiking friends, foodie friends, smart friends... whatever you wish!</div>
+	</div>
+	<div class ="tut-exit"><a href="../">START EXPLORING</a></div>	
+
+</div>
+
+
+
+<script>
+	var a=document.getElementsByTagName("a");
+	for(var i=0;i<a.length;i++){
+    	a[i].onclick=function(){
+        	window.location=this.getAttribute("href");
+        	return false
+    	}
+	}
+</script>
+<style type="text/css">
+	.text-holder {
+		width: 80%;
+		height: 400px;
+		opacity: 0.7;
+		background-color: white;
+		margin: 0 auto;
+		margin-top: 30px;
+	}
+	.tut-title {
+		color: black;
+		opacity: 1;
+		margin-bottom: 10px;
+	}
+	.tut-detail {
+		width: 80%;
+		margin: 0 auto;
+		font-family: helvetica;
+		opacity: 1;
+		font-size: 12px;
+	}
+	.tut-exit{
+		width: 35%;
+		text-decoration: none;
+		background-color: gray;
+		opacity: 1;
+		color: black;
+		margin: 0 auto;
+		font-family: 'League Gothic';
+		font-size: 20px;
+		margin-top: 20px;
+		text-align: center;	
+	}
+</style>

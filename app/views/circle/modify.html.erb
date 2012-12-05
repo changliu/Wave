@@ -1,0 +1,137 @@
+<input type="button" id="back_to_view_all" value="Back to View All"></input><br/><br/>
+Name: <input type="text" name="circlename" id="circlename" value="<%= @c.name %>"></input><br/><br/>
+Users (<a href="#" id="adduser" style="color:black;">Add User</a>):
+<ul>
+	<% num = 0 %>
+	<% for user in @c.get_users(session[:user_id]) %>
+		<li id="u_<%= num %>">
+			<%= user.name %> &nbsp;
+			<input type="hidden" value="<%= user.id %>" id="uid_<%= num %>"></input>
+			<a href="#" id="del_<%= num %>" style="color:black;">Remove</a>
+		</li>
+	<% num += 1 %>
+	<% end %>
+</ul>
+<div id="all_users"></div>
+<input type="button" id="savecircle" name="savecircle" value="Save"></input>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#back_to_view_all").click(function(){
+		window.location = "/circle/view_all";
+	});
+
+	$("#savecircle").click(function(){
+		$.get('/circle/rename', {new_name: $("#circlename").val(), id: <%= @c.id %>}, function(data){
+			if(data == "OK"){
+				console.log("circle successfully renamed!");
+			} else {
+				console.log("error renaming circle!");
+			}
+		});
+
+		var add_user_to_circle = function(uid){
+			$.get('/circle/add_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
+				if(data == "OK"){
+					console.log("user " + uid + " successfully added to circle " + <%= @c.id %>);
+					window.location = "/circle/modify?id=<%= @c.id %>";
+				} else {
+					console.log("error adding user " + uid + " to circle " + <%= @c.id %>);
+				}
+			});
+		};
+
+		if($("#myform").length != 0){
+			// myform exists
+			console.log("myform exists");
+			
+			$("#myform").children().each(function(){
+				console.log("hello");
+				var full_name = this.value;
+				if(this.checked == true){
+					console.log("processing checked checkbox");
+					
+					$.get('/user/exists', {name: full_name}, function(data){
+						if(data == "NOK"){
+							console.log("user does not exist in database");
+							$.get('/user/create', {name: full_name}, function(data){
+								if(data == "NOK"){
+									console.log("error creating user!");
+								} else {
+									console.log("user successfully created");
+									var ret = data;
+									$.get('/circle/user_exists_in_circle', {user_id: data, circle_id: <%= @c.id %>}, function(data){
+										if(data == "NOK"){
+											add_user_to_circle(ret);
+										} else {
+											console.log("user " + ret + " already exists in circle " + <%= @c.id %>);
+										}
+									});
+								}
+							});
+						} else {
+							console.log("user already exists in database");
+							var ret2 = data;
+							$.get('/circle/user_exists_in_circle', {user_id: data, circle_id: <%= @c.id %>}, function(data){
+								if(data == "NOK"){
+									add_user_to_circle(ret2);
+								} else {
+									console.log("user " + ret2 + " already exists in circle " + <%= @c.id %>);
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+
+	$("[id^=del]").click(function(){
+		var selfid = this.id;
+		var num = selfid.split("_")[1];
+		var selector = "#uid_" + num;
+		var uid = $(selector).val();
+		$.get('/circle/remove_user', {user_id: uid, circle_id: <%= @c.id %>}, function(data){
+			if(data == "OK"){
+				console.log("user successfully removed from circle!");
+				$("#u_" + num).hide();
+			} else {
+				console.log("error removing user from circle!");
+			}
+		});
+	});
+
+	$("#adduser").click(function(){
+		var friend_list = "https://api.foursquare.com/v2/users/self/friends?oauth_token=<%= User.find(session[:user_id]).access_token %>";
+
+			var params = new Object();
+			params.oauth_token = "<%= User.find(session[:user_id]).access_token %>";
+			$.ajax({
+	            url: friend_list,
+	            type: 'get',
+	            dataType: 'jsonp',
+	            data:params,
+	            success: fs_query_success
+	          });
+
+	     // IF SUCCESS, PARSE JSON DATA AND DISPLAY THE VENUE LIST INTO ACCORDION
+	     // returned data might have changed, need to fix bugs on wave icon
+	    function fs_query_success(data){
+	    	//console.log(data);
+    		var friends = data.response.friends.items;
+	    	//console.log(friends);
+	    	$("#all_users").append("Select which of your FourSquare friends you want to add to this circle: ");
+	    	$("#all_users").append("<form id='myform'>");
+	    	for(var i = 0; i < friends.length; i++) {
+	    		var friend_fn = friends[i].firstName;
+	    		var friend_ln = friends[i].lastName;
+	    		//console.log(friend_fn, friend_ln);
+            
+          var title = "<input type='checkbox' name='" + friend_fn + "' value='" + friend_fn + " " + friend_ln + "'>&nbsp;" + friend_fn + " " + friend_ln;
+          $("#myform").append(title);
+        }
+        $("#all_users").append("</form>");
+	    }
+	});
+});
+</script>

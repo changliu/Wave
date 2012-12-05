@@ -1,0 +1,17 @@
+Name: <input type="text" name="circlename" id="circlename"></input><br/><br/>
+<input type="button" id="savecircle" name="savecircle" value="Create"></input>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#savecircle").click(function(){
+		$.get('/circle/create', {name: $("#circlename").val()}, function(data){
+			if(data == "OK"){
+				console.log("circle successfully created!");
+				window.location = "/circle/view_all";
+			} else {
+				console.log("error creating circle!");
+			}
+		});
+	});
+});
+</script>

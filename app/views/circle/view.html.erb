@@ -1,0 +1,21 @@
+Friends in this circle:<br/><br/>
+	<% users = @c.get_users(session[:user_id]) %>
+	<% if users.length > 0 %>
+	<ul>
+		<% for user in users %>
+			<li>
+				<%= user.name %>
+			</li>
+		<% end %>
+	</ul>
+	<% else %>
+		No users in this circle yet.
+	<% end %>
+<br/><br/>
+<input type="button" id="backbtn" value="Back"/>
+
+<script type="text/javascript">
+	$("#backbtn").click(function(){
+		window.location = "/circle/view_all";
+	});
+</script>

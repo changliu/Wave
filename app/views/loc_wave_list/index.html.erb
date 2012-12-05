@@ -1,3 +1,7 @@
+<% content_for :pagejs do %>
+  <script src="http://cdn.optimizely.com/js/141715440.js"></script>
+<% end %>
+
    <div data-role="page" >
 
   <script>
@@ -166,12 +170,12 @@ function animate(lastTick, timeLeft, closingId, openingId)
               //map using checkin amount
               var checkin_icon_path = "";
               if (checkins > 5000) {
-                checkin_icon_path = "/assets/wave_icon/ship.svg";
+                checkin_icon_path = "/assets/wave_icon/crowd.svg";
               }
               else if (checkins < 1000) {
-                checkin_icon_path = "assets/wave_icon/swim.svg";
+                checkin_icon_path = "assets/wave_icon/few.svg";
               }
-              else {checkin_icon_path = "assets/wave_icon/surf.svg";}
+              else {checkin_icon_path = "assets/wave_icon/some.svg";}
 
 
               
