@@ -484,8 +484,9 @@ margin-top: 20px;
   opacity: 0.8;
 }
 
-#grey{
+#grey, #grey2{
   background-color: #E0E0E0;
+  height:100%;
 }
 
 #greyy{
@@ -512,7 +513,7 @@ margin-top: 20px;
 
 .circleHeader{
   color:black;
-  opacity: 0.6;
+  opacity: 0.8;
   font-family: 'League Gothic';
   font-size: 25pt;
   position: relative;
@@ -531,9 +532,7 @@ display:inline-block;
 margin-top: 5px;
 position: relative;
 margin-left: 2px;
-      
-
-} 
+}
 
 #grey ul li img {
 
@@ -730,7 +729,6 @@ border-bottom-left-radius: 0px/*{cornerRadius}*/!important;
   clip: rect(1px,1px,1px,1px);
 }
 
-
 .seeya {
 background-color: rgba(0, 0, 0, 0.68);
 font-family: 'League Gothic';
@@ -741,9 +739,90 @@ top: 10px;
 left: 90px;
 }
 
+.create {
+background-color: rgba(0, 0, 0, 0.68);
+font-family: 'League Gothic';
+padding-right: 51px;
+padding-left: 50px;
+position: relative;
+top: 10px;
+left: 90px;
+}
+
+.currusersul {
+  background-color:none;
+}
+
+.del_but {
+  font-family: 'League Gothic';
+  color:black;
+  position:relative;
+  left:90px;
+}
+
+.currusersul {
+  /*display: inline;
+  list-style-type: none;*/
+}
+
+.nametxt {
+  font-family: 'League Gothic';
+  color:black;
+  position:relative;
+  font-size:30px;
+  left:90px;
+  /*color: rgba(0, 0, 0, 0.68);*/
+}
+
+.nametxt2 {
+  font-family: 'League Gothic';
+  color:black;
+  position:relative;
+  font-size:30px;
+  /*left:90px;*/
+  /*color: rgba(0, 0, 0, 0.68);*/
+}
+
+.subtext {
+  font-family: 'HelveticaNeue-Light';
+  font-size:15pt;
+  position:relative;
+  left:90px;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.nametxtend {
+  font-family: 'League Gothic';
+  color:black;
+  position:relative;
+  left:98px;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+#circlename {
+  position:relative;
+  left:90px;
+  font-family: 'HelveticaNeue-Light';
+  font-size: 13pt;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.plusgroup {
+  width:23px;
+  height:23px;
+}
+
+.plususer {
+  width:20px;
+  height:20px;
+  left:94px;
+  position:relative;
+}
+
 .yes{
 color:rgba(255, 255, 255, 0.7);
 font-size: 13pt;
+text-align:center;
 }
 
 .backtocircles{
