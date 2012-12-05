@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: 
+  database: postgres
   pool: 5
   username: postgres
   password: samcates0
@@ -24,7 +24,7 @@ development:
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
   host: localhost
-  #port: 5432
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -44,7 +44,7 @@ test:
   database: wave_test
   pool: 5
   username: postgres
-  password:
+  password: samcates0
 
 production:
   adapter: postgresql
@@ -52,4 +52,4 @@ production:
   database: wave_production
   pool: 5
   username: postgres
-  password:
+  password: samcates0

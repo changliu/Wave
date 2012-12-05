@@ -1,5 +1,8 @@
-
-
+<% #if session[:user].blank? %>
+  <!--<script type="text/javascript">
+    window.location.href="/";
+  </script>-->
+<% #end %>
 
   <style>
     
@@ -35,41 +38,60 @@
     $(document).ready(function () {
       $('ul.accordion').accordion();
 
+
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(success, error);
         } else {
           console.debug('not supported');
         }
 
+        var startlat;
+        var startlong;
+
       function error() {
         console.debug("user geolocation is not supported")
       }
       function success(position) {
 
+        startlat = position.coords["latitude"];
+        startlong = position.coords["longitude"];
+
+
+
         var vars = [], hash;
-        var mood = "food";
-        var foursquare_mood = "food";
         var q = document.URL.split('?')[1];
         if(q != undefined){
-          mood=q.split('=')[1];
-          console.log(mood);
+          console.log(q);
+          q = q.split('&');
+          for(var i = 0; i < q.length; i++){
+            hash = q[i].split('=');
+            vars.push(hash[1]);
+            vars[hash[0]] = hash[1];
+          }
         }
+
+        mood = vars['mood_tag'];
+        access_token = vars['access_token'];
+        var foursquare_mood = "topPicks";
+        var href_back = "../soc_mood_picker#access_token=" + access_token;
+        $(".nav").attr('href', href_back);
+        friend_list();
+
+
 
         //map mood to foursquare api section
         if(mood == "adventurous")
           foursquare_mood = "outdoors";
+        else if(mood == "food")
+          foursquare_mood = "food";
+        else if(mood == "toppicks" )
+          foursquare_mood = "topPicks";
         else if(mood == "artsy")
           foursquare_mood = "arts";
-        else if(mood == "romantic" )
-          foursquare_mood = "sights";
+        else if(mood == "drinks" )
+          foursquare_mood = "drinks";
         else if(mood == "stylish")
           foursquare_mood = "shops";
-        else if(mood == "budget")
-          foursquare_mood = "specials";
-
-
-
-
 
 
         var query = "https://api.foursquare.com/v2/venues/explore";   
@@ -77,7 +99,7 @@
         params.ll = position.coords["latitude"] + "," + position.coords["longitude"];
         params.limit = 10;
         params.section = foursquare_mood;
-        params.oauth_token = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+        params.oauth_token = access_token;
         $.ajax({
           url: query,
           dataType: 'json',
@@ -87,12 +109,14 @@
       }
 
       function fs_query_success(data){
+        // console.log("success"); 
         var groups = data.response.groups;
         for(var i=0;i<groups.length;i++){
           var items = groups[i].items;  
           for(var j=0;j<items.length;j++){
             var venue_obj = items[j];
             var venue = venue_obj.venue;
+            // console.log(venue);
 
             //get the tips to display on the accordion
             var tips_obj = venue_obj.tips;
@@ -108,12 +132,24 @@
             var venue_name = venue.name;
             var venue_id = venue.id;
             var venue_contact = venue.contact["formattedPhone"];
+
+
+
+
+            //get venue address
+            var loc = venue.location;
+            var address = loc.address;
+            var city = loc.city;
+            var state = loc.state;
+            var zipcode = loc.postalCode;
+            var venue_lat = loc["lat"];
+            var venue_long = loc["lng"];
+
             
 
             //mapping venue distance in miles, popularity onto wave icons
-            var distance = venue.location["distance"]/1600;
+            var distance = loc["distance"]/1600;
             var checkins = venue.stats.checkinsCount;
-
 
 
             //map the distance icon
@@ -138,32 +174,92 @@
             else {checkin_icon_path = "assets/wave_icon/surf.svg";}
 
 
-            var token_str = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
+            // var token_str = "UOQQCXQE42ECWMGUMHR3GMNBGSQORC1KB2JBXSJUWY3FBBPG";
 
 
             var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
           
             // pass on venue name, distance, id, token to show me more
-            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> " + tips_user + " said: "+  tips.text  + "<br/><br/> Rating: " + rating.toFixed(1) + "/10 <br/><br/><a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&token=" + token_str + "&name=" + venue_name +"'>SHOW ME MORE</a><a class='navi' href='soc_wave_list/wave_final?id=" + venue_id + "&name=" + venue_name + "'>RIDE THIS WAVE</a></div>";
-          
+
+            var content = "<div id='Accordion" + j + "Content' class='AccordionContent'><br/> ";
+
+
+            var tips = tips_user + " said: "+  tips.text  + "<br/><br/> Rating: " + rating.toFixed(1) + "/10 <br/><br/>";
+            var show_me_more = "<a class = 'navi' href='soc_wave_list/wave_detail?id=" + venue_id + "&access_token=" + access_token + "&name=" + venue_name + "&contact=" + venue_contact + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode+ generateHref(startlat, startlong, venue_lat, venue_long) + "&mood_tag=" + mood + "'>SHOW ME MORE</a>";
+
+
+            var ride_the_wave =" <a class='navi' href='loc_wave_list/wave_final?id=" + venue_id + "&access_token=" + access_token+ "&name=" + venue_name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode+ generateHref(startlat, startlong, venue_lat, venue_long) + "&mood_tag=" + mood +"'>RIDE THIS WAVE</a></div>";
+            // console.log(content);
 
             $(".AccordionContainer").append(title);
             $(".AccordionContainer").append(content);
+            $("#Accordion" + j + "Content").append(tips);
+            friend_rec(venue_name,j);
+            $("#Accordion" + j + "Content").append(show_me_more);
+            $("#Accordion" + j + "Content").append(ride_the_wave);
+
           }
         }
         }      
     });
+
+
+  function friend_list() {
+    var friend_list = "https://api.foursquare.com/v2/users/self/friends";
+
+    var params = new Object();
+    params.oauth_token = access_token;
+    $.ajax({
+            url: friend_list,
+            type: 'get',
+            dataType: 'jsonp',
+            data:params,
+            success: fs_query_success
+          });
+  }
+
+
+  /* Important: right now foursquare API doesn't support getting friends' checkin history
+   * even through authenticated api call. So there is no way of getting this information
+   * what so ever. Instead we've decided to generate some recommendation from a random(0-5) 
+   * list of users' friends for each venue.*/
+
+  function fs_query_success(data){
+    friends = data.response.friends.items;
+    // console.log(friends);
+    
+  }
+
+  function friend_rec(venue_name,j) {
+    var num_friends = friends.length;
+
+    //random number to be used for generate a random list of friend recommendations
+    var random_num=Math.floor(Math.random()*6);
+    // console.log(venue_name, random_num);
+
+    for(var i = 0 ; i < random_num; i++) {
+
+      //select a random friend from user's friend list to pupolate the recommendation list
+
+      var random_friend = friends[Math.floor(Math.random() * num_friends)];
+
+      //get their names
+      var friend_fn = random_friend.firstName;
+      var friend_ln = random_friend.lastName;
+      // console.log(venue_name, friend_fn, friend_ln);
+
+
+      // add the div containing profile pics and names to the accordionContent div
+      var prof_img_url = random_friend.photo;   
+      var rec_div = "<div style='height:30px'><img src= '" + prof_img_url + "' height='30' width='30' style='float:left'>" + friend_fn + " was here </div>"; 
+      $("#Accordion" + j + "Content").append(rec_div);
+
+      }
+
+
+    }
         
   </script>
-
-
-
-
-
-
-
-
-
 
 
   <script>
@@ -183,6 +279,11 @@ function runAccordion(index)
   
   openAccordion = nID;
 }
+
+function generateHref(startlat, startlong, endlat, endlong){
+          var str = "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong;
+          return str;
+        }
 
 function animate(lastTick, timeLeft, closingId, openingId)
 {  
@@ -227,39 +328,3 @@ function animate(lastTick, timeLeft, closingId, openingId)
 
 
 
-<!-- Meetup API call
-          var query = "https://api.meetup.com/2/open_events?";
-          params = new Object();
-          params.key = "422a4d16a2332e2b664975792b5116";
-          params.sign = true;
-          params.lat = position.coords["latitude"];
-          params.lon = position.coords["longitude"];
-          params.radius = 2;
-          params.page = 5;
-          console.log("ready to query api...");
-          console.log(query);
-          $.ajax({
-
-            url: query,
-            dataType: "jsonp",
-            jsonpCallback:"jsoncallback",
-            data: params,
-            success: fs_query_success
-
-          }); -->
-
-
-<!--           
-          //meetup data parse
-          console.log("sucess getting data");
-          var results = data.results;
-          for(var i = 0; i < results.length; i++) {
-            var result = results[i];
-            console.log(result);
-            var meetup_name = result.name;
-            var meetup_id = result.id;
-            var dist = result.distance;
-            var event_url = result.event_url;
-            var description = result.description;
-            var rsvp_cnt = result.yes_rsvp_count;
-            var new_description = description.replace(/(<([^>]+)>)/ig,"");  -->

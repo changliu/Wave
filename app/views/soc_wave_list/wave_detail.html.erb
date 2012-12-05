@@ -13,7 +13,7 @@
 
 <div id = "getout">
 <a  class = "na" href="../soc_wave_list">Back</a>
-<a  class = "na" href="wave_final">Ride this Wave</a>
+<!-- <a  class = "na" href="wave_final">Ride this Wave</a> -->
 </div>
 </div>
 
@@ -43,19 +43,34 @@
 	var dist = vars['dist'];
 	var name = vars['name'];
 	var token = vars['token'];
-	// console.log(token);
-	console.log(name);
+  var contact = vars['contact'];
+  var startlat = vars['startlat'];
+  var startlong = vars['startlong'];
+  var endlat = vars['endlat'];
+  var endlong = vars['endlong'];
+  var name = vars['name'];
+  var address = vars['addr'];
+  var city= vars['city'];
+  var state = vars['state'];
+  var zipcode = vars['zipcode'];
+  var access_token = vars['access_token'];
+  var mood = vars['mood_tag'];
 
-
+  var href_back = "../soc_wave_list?mood_tag=" +mood + "&access_token=" + access_token;
+  $(".na").attr('href', href_back);
 	$("#header").append("<h2 style='font-size:30px'>" + unescape(name) + "</h2>");
 	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
 
+  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&name=" + name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a>";
+  console.log(ride_btn);
+  $("#getout").append(ride_btn);
+
 	//query to download all photos links of a venue
  	var query = "https://api.foursquare.com/v2/venues/" + id + "/photos?";
- 	var query2 = "https://api.foursquare.com/v2/venues/" + id + "/tips?"   
+ 	var query2 = "https://api.foursquare.com/v2/venues/" + id + "/tips?sort=popular"   
  	    params = new Object();
         params.group = "venue"
-        params.oauth_token = token;
+        params.oauth_token = access_token;
         $.ajax({
           	url: query,
             dataType: 'json',

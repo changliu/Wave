@@ -1,4 +1,4 @@
-
+<% user = session[:user] %>
 <html>
 <body>
 	<div id = "container">
@@ -13,6 +13,15 @@
 			<div id = "grey" style="height: 320px; width: 100%;">
 				<p class = "circleHeader">MY GROUPS</h1>
 			    <ul class="allCircles">
+			    	<% for circle in user.circles do %>
+			    		<li class="circle">
+								<span class = "grayBox"><%= circle.name.upcase %></span>
+								<a class="changed" href="friendList">
+								<img src="/assets/hiking.jpg" />
+								</a>
+							</li>
+			    	<% end %>
+			    	<!--
 					<li class="circle">
 						<span class = "grayBox">HIKING</span>
 						<a class="changed" href="friendList">
@@ -38,11 +47,13 @@
 							<img src="/assets/book.jpg" />
 						</a>
 					</li>
+				-->
 				</ul>
-				<span class = "seeya"><a class="yes" href="/soc_mood_picker">BACK</a></span>
+				<span class = "seeya"><a class="yes" href="/">BACK</a></span>
 			</div>
 		</div>
 	</div>
+
 <script>
 var a=document.getElementsByTagName("a");
 for(var i=0;i<a.length;i++){
@@ -53,27 +64,17 @@ for(var i=0;i<a.length;i++){
 }
 
 function doStuff() {
-
-		  	// get access_token to use for authenticated api calls
-			var access_token;
-			  	var q = document.URL.split('#')[1];
-			  	if(q != undefined){
-		    		q = q.split('=')[1];
-		    		access_token = q;
-		    		}
-		    	
-	         $("a.changed").attr("href", "friendList#access_token=" + access_token);
-	         $("a.yes").attr("href", "/soc_mood_picker#access_token=" + access_token);
-	         document.getElementsByClassName('changed').href = sHref;
-
-		  	
-
-
-
-
-
-
-		}
+	// get access_token to use for authenticated api calls
+	var access_token;
+	var q = document.URL.split('#')[1];
+	if(q != undefined){
+		q = q.split('=')[1];
+		access_token = q;
+	}
+  $("a.changed").attr("href", "friendList#access_token=" + access_token);
+  //$("a.yes").attr("href", "/soc_mood_picker#access_token=" + access_token);
+  document.getElementsByClassName('changed').href = sHref;
+}
 
 doStuff();
 

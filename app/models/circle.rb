@@ -1,4 +1,14 @@
 class Circle < ActiveRecord::Base
-  # attr_accessible :title, :body
-  has_and_belongs_to_many :users
+  attr_accessible :name, :num_users, :creator
+
+  belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
+  has_many :circle_users
+  has_many :users, :through => :circle_users
+
+  def get_users
+		user = session[:user]
+		all_users = self.users
+		all_users.delete_if{|u| u.id.equal? user.id}
+		return all_users
+	end
 end
