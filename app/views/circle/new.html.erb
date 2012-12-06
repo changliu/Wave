@@ -1,6 +1,20 @@
-Name: <input type="text" name="circlename" id="circlename"></input><br/><br/>
-<input type="button" id="savecircle" name="savecircle" value="Create"></input>
-
+	<div id = "container">
+		<div id = "main">
+			<div id = "topImage" style="height: 150px; width: 100%;">
+				<div id = "nameInfo" style="height: 50px; width: 100%">
+					<p class = "name"> Waves with Friends </p>
+					<p id = "subhead">Stanford, CA </p>
+				</div>
+			</div>
+			<div id = "grey" style="height: 320px; width: 100%;">
+				<a class="nametxt">Enter name of group: </a><br/><br/><input type="text" name="circlename" id="circlename"></input><br/><br/>
+			
+				<span class="create"><a class="yes" id="savecircle" name="savecircle" href="#">CREATE</a></span><br/>
+				<span class="seeya"><a class="yes" href="/circle/view_all">BACK</a></span>
+			</div>
+		</div>
+	</div>
+	
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#savecircle").click(function(){
