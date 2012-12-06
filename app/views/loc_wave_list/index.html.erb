@@ -173,13 +173,13 @@ function animate(lastTick, timeLeft, closingId, openingId)
                 checkin_icon_path = "/assets/wave_icon/crowd.svg";
               }
               else if (checkins < 1000) {
-                checkin_icon_path = "assets/wave_icon/few.svg";
+                checkin_icon_path = "assets/wave_icon/bike.svg";
               }
               else {checkin_icon_path = "assets/wave_icon/some.svg";}
 
 
               
-              var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
+              var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img class='c' src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img class='c' src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "</div></div>";
 
               //create place holder for venue tips, and links
               var content_holder = "<div id='Accordion" + j + "Content' class='AccordionContent'> </div>"

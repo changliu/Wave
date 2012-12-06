@@ -8,7 +8,7 @@
   position:absolute;
   top:0;
   width:100%;
-  z-index:0;
+  z-index:-1;
   height: 460px;
 }
 
@@ -21,7 +21,7 @@
 
 
 
-#heythere{
+/*#heythere{
   background-color: white;
   float:right;
   color:black;
@@ -35,7 +35,7 @@
   height: 0.1px;
   z-index:6000; 
   font-family: 'League Gothic';
-}
+}*/
 
 
 #friendslink {
@@ -93,19 +93,24 @@
 }
 
 .entertwo{
-  margin-left: -40px;
+  margin-left: -48px;
   margin-top: -5px;
 }
 
 .enterthree{
-  margin-left: -70px;
+  margin-left: -65px;
   margin-top: -5px;
 }
 
-.enterone{
+.enterfour{
+  margin-left: -93px;
+  margin-top: -5px;
+}
+
+/*.enterone{
   margin-left: 0px;
   margin-top: -10px;
-}
+}*/
 
 #heythere a{
   text-decoration: none !important;
@@ -120,6 +125,7 @@
 #seefriendslink a{
   text-decoration: none !important;
   color: white;
+  margin-left:0px;
 }
 
 #wavelink a{

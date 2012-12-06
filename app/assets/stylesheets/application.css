@@ -73,7 +73,7 @@
   position:absolute;
   top:0;
   width:100%;
-  z-index:-1;
+  z-index:-1; !important
   height: 460px;
 
 }
@@ -97,7 +97,7 @@
   position:relative;
   text-align:center;
   top:200px;
-  width: 300px;
+  width: 190px;
   height: 0.1px;
   z-index:6000; 
   font-family: 'League Gothic';
@@ -148,7 +148,7 @@
 }
 
 .enterone{
-  margin-left: -90px;
+  margin-left: -100px;
   margin-top: -10px;
 }
 
@@ -296,6 +296,7 @@ h1{
   border-bottom: solid 1px white;
   border-top: solid 1px white;
   -moz-user-select:none;
+  padding-right:35px;
 }
 
 .AccordionContent
@@ -698,7 +699,7 @@ border: 0px !important;
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { 
   border: 0px !important; 
-  background: #191970 !important; 
+  background: #388E8E !important; 
   font-weight: normal !important; 
   color: white !important; 
 }
@@ -852,7 +853,7 @@ text-align:center;
 z-index: 5;
  padding-left: 34px;
 
-height:30px;
+height:34px;
 background-color: rgba(0, 0, 0, 0.45); 
 background-repeat: repeat-x;
 
@@ -873,10 +874,14 @@ background-repeat: repeat-x;
 
 #navigationTop a{
   
-  font-size:15px;
+  font-size:16.5px;
 
   color: rgba(255, 255, 255, 0.38);
   font-family: 'League Gothic';
+}
+
+.c{
+  opacity:0.7;
 }
 
 
