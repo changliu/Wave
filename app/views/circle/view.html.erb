@@ -1,21 +1,46 @@
-Friends in this circle:<br/><br/>
-	<% users = @c.get_users(session[:user_id]) %>
-	<% if users.length > 0 %>
-	<ul>
-		<% for user in users %>
-			<li>
-				<%= user.name %>
-			</li>
-		<% end %>
-	</ul>
-	<% else %>
-		No users in this circle yet.
-	<% end %>
-<br/><br/>
-<input type="button" id="backbtn" value="Back"/>
+<div id = "container">
+		<ul id="navigationTop">
+  <li><a href="/circle/view_all">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
+		<div id = "main">
+			<div id = "topImage" style="height: 150px; width: 100%;">
+				<div id = "nameInfo" style="height: 50px; width: 100%">
+					<p class = "name"> Waves with Friends </p>
+					<p id = "subhead">Stanford, CA </p>
+				</div>
+			</div>
+			<div id = "grey" style="height: 320px; width: 100%;">
+				<a class="nametxt">Friends in this Group: </a>
+				<br/>
+					<% users = @c.get_users(session[:user_id]) %>
+					<% if users.length > 0 %>
+						<ul id="using">
+						<% for user in users %>
+							<li class="use">
+							<%= user.name %>
+							</li>
+							<% end %>
+						</ul>
+						<% else %>
 
-<script type="text/javascript">
-	$("#backbtn").click(function(){
-		window.location = "/circle/view_all";
-	});
-</script>
+						<p style=" margin-top:5px; margin-left:5px; font-family: HelveticaNeue-Light;">No users in this circle yet.</p>
+					<% end %>
+<br/><br/>
+				<span class="create"><a class="yes" href="/circle/view_all">BACK</a>
+				</span><br/>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+

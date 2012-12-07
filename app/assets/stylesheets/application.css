@@ -925,3 +925,11 @@ background-repeat: repeat-x;
   font-size:13px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue";
 }
+
+.use{
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue";
+}
+
+#everyhome{
+  margin-top: -40px;
+}
