@@ -1,4 +1,9 @@
-
+<ul id="navigationTop">
+  <li><a href="../soc_wave_list">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
 
 <div id="bgimg">
 </div>
@@ -12,7 +17,7 @@
 </p>
 
 <div id = "getout">
-<a  class = "na" href="../soc_wave_list">Back</a>
+
 <!-- <a  class = "na" href="wave_final">Ride this Wave</a> -->
 </div>
 </div>
@@ -59,10 +64,10 @@
 
   var href_back = "../soc_wave_list?mood_tag=" +mood + "&access_token=" + access_token;
   $(".na").attr('href', href_back);
-	$("#header").append("<h2 style='font-size:30px'>" + unescape(name) + "</h2>");
+	$("#header").append("<h2 style='font-size:28px;' >" + unescape(name) + "</h2>");
 	// $("#text").html(unescape(name) + "<br/>" + unescape(description));
 
-  var ride_btn = "<a class='na' href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&name=" + name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a>";
+  var ride_btn = "<a class='na' style='margin-left:3px'; href='/loc_wave_list/wave_final?id=" + id + "&contact=" + contact + "&name=" + name + "&addr=" + address + "&city=" + city + "&state=" + state + "&zipcode=" + zipcode + "&startlat=" + startlat + "&startlong=" + startlong + "&endlat=" + endlat + "&endlong=" + endlong + "'>RIDE THIS WAVE</a>";
   console.log(ride_btn);
   $("#getout").append(ride_btn);
 

@@ -2,6 +2,12 @@
 user = User.find(session[:user_id]) %>
 <html>
 <body>
+	<ul id="navigationTop">
+  <li><a href="/">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
 	<div id = "container">
 		<div id = "main">
 			<div id = "topImage" style="height: 150px; width: 100%;">
@@ -55,7 +61,7 @@ user = User.find(session[:user_id]) %>
 					</li>
 				-->
 				</ul>
-				<span class="seeya"><a class="yes" href="/">BACK</a></span>
+				
 			</div>
 		</div>
 	</div>

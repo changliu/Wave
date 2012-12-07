@@ -1,13 +1,21 @@
+<ul id="navigationTop">
+  <li><a href="/">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
+
+
   <h2 id = "ohyeah" >YOU'RE RIDING A WAVE TO  </h2>
 
   <p id = "name" class="noti" style = "margin-left:auto; margin-right:auto; font-size:25px;"></p>	
   <p id = "addr" class="noti" style = "margin-left:auto; margin-right:auto"><br><br></p>
 	<p class = "noti" style = "margin-left:auto; margin-right:auto"><br>see the map below to start heading over<br></p>
 	<p id = "or" style = "margin-left:auto; margin-right:auto"> OR</p>
-	<div id = "notibutton" style = "margin-left:auto; margin-right:auto" onClick="create_notification()"><a href="#"><p> get notified when you are closer </p></a></div>
+	<div id = "notibutton" style = "margin-left:auto; margin-right:auto" onClick="create_notification()"><a href="#"><p class="whencloser"> get notified when you are closer </p></a></div>
 	<div id = "again" style = "margin-left:auto; margin-right:auto">
 	<!-- <a  class = "n" href="../loc_wave_list">Back to Waves</a> -->
-    <a  class = "n" href="..">Go Home</a>
+   
 	</div>
 	<div id="googlemap">
 	</div>
@@ -96,9 +104,9 @@ function calcRoute() {
 
   function create_notification() {
     console.log("clicked");
-    $("#notibutton a").html("We will notify you when you are close");
-
-      
+    //$("#notibutton a").html("We will notify you when you are close");
+    alert("You'll get a reminder once you're less than a mile away from here!");
+    location = "/";
     
   }
  </script>

@@ -1,4 +1,10 @@
 	<div id = "container">
+				<ul id="navigationTop">
+  <li><a href="/circle/view_all">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
 		<div id = "main">
 			<div id = "topImage" style="height: 150px; width: 100%;">
 				<div id = "nameInfo" style="height: 50px; width: 100%">
@@ -7,8 +13,8 @@
 				</div>
 			</div>
 			<div id = "grey2" style="height: 320px; width: 100%;">
-				<a class="nametxt">Name of group: </a><br/><input type="text" name="circlename" id="circlename" value="<%= @c.name %>"></input><br/><br/>
-				<a class="nametxt">Users (</a><img src="/assets/blackplus.png" href="#" class="plususer" id="adduser"/><a class="nametxtend">):</a>
+				<a class="nametxt">Name of group: </a><br/><input type="text" name="circlename" id="circlename1" value="<%= @c.name %>"></input><br/><br/>
+				<a class="nametxt">Users </a><img style="margin-left:-10px;"src="/assets/blackplus.png" href="#" class="plususer" id="adduser"/><a class="nametxtend"></a>
 				<a>
 				<ul class="currusersul">
 					<% num = 0 %>
@@ -16,7 +22,7 @@
 						<li id="u_<%= num %>">
 							<a class="subtext"><%= user.name %></a> &nbsp;
 							<input type="hidden" value="<%= user.id %>" id="uid_<%= num %>"></input>
-							<img src="/assets/blackminus.png" href="#" class="del_but" id="del_<%= num %>"/>
+							<img style="width:15px; margin-top:-5px;" src="/assets/blackminus.png" href="#" class="del_but" id="del_<%= num %>"/>
 						</li>
 						<% num += 1 %>
 					<% end %>
@@ -24,8 +30,8 @@
 			</a>
 				<div id="all_users" class="subtext"></div>
 				
-				<span class="create"><a class="yes" id="savecircle" name="savecircle" href="#">SAVE</a></span><br/>
-				<span class="seeya"><a class="yes" href="/circle/view_all">BACK</a></span>
+				<span class="create1"><a class="yes" id="savecircle" name="savecircle" href="#">SAVE</a></span><br/>
+				
 			</div>
 		</div>
 	</div>
