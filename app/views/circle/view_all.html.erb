@@ -28,10 +28,10 @@ user = User.find(session[:user_id]) %>
 								<a class="changed" href="/circle/view?id=<%= circle.id %>">
 								<%if circle.name=='hiking'%>
 								<img src="/assets/hiking.jpg" />
-								<%end%>
-
-								<%if circle.name=='artsy'%>
+								<%elsif circle.name=='artsy'%>
 								<img src="/assets/artsy.jpg" />
+								<%else%>
+								<img src="/assets/not.jpg" />
 								<%end%>
 
 								</a>
