@@ -277,6 +277,7 @@ h1{
 {
   position:relative;
   width:319px;
+  font-family: "HelveticaNeue-Light";
 }
 
 .AccordionTitle
@@ -882,6 +883,11 @@ background-repeat: repeat-x;
 
 .c{
   opacity:0.7;
+}
+
+.moveaccordiondown{
+ margin-top: 50px;
+
 }
 
 

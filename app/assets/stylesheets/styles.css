@@ -243,6 +243,7 @@ h1{
 {
   position:relative;
   width:319px;
+  font-family: "HelveticaNeue-Light";
 }
 
 .AccordionTitle
@@ -269,9 +270,10 @@ h1{
   height:0px;
   overflow:auto;
   display:none; 
-  font-family: helvetica;
+  font-family: "HelveticaNeue-Light";
+  font-weight:300;
   font-size: 9pt;
- background-color: rgba(255, 255, 255, 0.7);
+ background-color: rgba(255, 255, 255, 0.85);
 }
 
 .AccordionContainer

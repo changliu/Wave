@@ -7,19 +7,22 @@
   <style>
     
   </style>
+<ul id="navigationTop">
+  <li><a href="../soc_mood_picker">BACK</a></li>
+  <li><a href="/loc_wave_list">NEARBY WAVES</a></li>
+  <li><a href="/soc_mood_picker">SOCIAL WAVES</a></li>
+  <li><a href="/circle/view_all">GROUPS</a></li>
+</ul>
 
-
-  <img class="bg" src="/assets/nine.jpg"/>
+  <img class="bg" src="/assets/coolsauce.jpg"/>
 <!-- <div id = "introduction">
 
 </div> -->
 
+  <h1 id = "wavehead" style="height:10px;"> SOCIAL WAVES </h1>
+<div id="AccordionContainer" class="AccordionContainer moveaccordiondown">
 
-<div id="AccordionContainer" class="AccordionContainer">
-  <h1 id = "waves"> Friendly Waves </h1>
-  <div id = "links">
-<a  class = "nav" href="../soc_mood_picker" >Back to Exploring</a>
-</div>
+  
 </div>
 
 
@@ -187,7 +190,7 @@
             var friend_name = random_friend_name(random_index);
             friend_photo = random_friend_photo(random_index);
 
-            var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left; opacity:0.7; padding-left:15px;'>" + venue_name + "<br><div style='font-family:helvetica; font-size:12px; opacity:0.8;'> recommended by " + friend_name +"</div></div>";
+            var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left; opacity:0.7; padding-left:15px;'>" + venue_name + "<br><div style='font-family:HelveticaNeue-Light; font-size:11px; opacity:0.8;'> Recommended by " + friend_name +"</div></div>";
           
             // pass on venue name, distance, id, token to show me more
 
