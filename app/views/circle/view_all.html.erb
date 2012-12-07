@@ -26,9 +26,9 @@ user = User.find(session[:user_id]) %>
 								<span class = "grayBox"><% if circle.name %><%= circle.name.upcase %><% else %><%= "" %><% end %>&nbsp;&nbsp;<a id="del_<%= num %>" href="#">Delete</a>&nbsp;
 								<a id="mod_<%= num %>" href="#">Modify</a></span>
 								<a class="changed" href="/circle/view?id=<%= circle.id %>">
-								<%if circle.name=='hiking'%>
+								<%if circle.name.casecmp('hiking')==0%>
 								<img src="/assets/hiking.jpg" />
-								<%elsif circle.name=='artsy'%>
+								<%elsif circle.name.casecmp('artsy')==0%>
 								<img src="/assets/artsy.jpg" />
 								<%else%>
 								<img src="/assets/not.jpg" />
