@@ -197,9 +197,9 @@ function animate(lastTick, timeLeft, closingId, openingId)
               }
 
               if(rand > 1){
-                var suffix = " people there";
+                var suffix = " people there right now";
               } else if(rand == 1){
-                var suffix = " person there";
+                var suffix = " person there right now";
               }
               
               var title = "<div onclick='runAccordion(" + j + ");'><div class='AccordionTitle' onselectstart='return false;'> <div><img src= " + dist_icon_path + " height='30' width='30' style='float:left'><div><img src= " + checkin_icon_path + " height='30' width='30' style='float:left'></div>" + venue_name + "<br><div style='font-family:helvetica; font-size:12px; opacity:0.8;'>" + rand + suffix + "</div></div>";
